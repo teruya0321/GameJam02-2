@@ -5,14 +5,15 @@ public class ReadCSV_nos : MonoBehaviour
 {
     TextAsset csvFile; // CSVファイル
     List<string[]> csvDatas = new List<string[]>(); // CSVの中身を入れるリスト;
-    int i = 1;
-    //public EnemyData_nos data;
-    List<string[]> enemyDatas = new List<string[]>();
+    int i;
 
     public int enemyID;
     public string enemyName;
     public int enemyAtk;
     public int enemyHp;
+    public string speed;
+    public string isFatorSkinny;
+    public string drops;
     private void Awake()
     {
         csvFile = Resources.Load("CSVs/test2") as TextAsset; // Resouces下のCSV読み込み
@@ -35,13 +36,47 @@ public class ReadCSV_nos : MonoBehaviour
             enemyName = csvDatas[i][1];
             enemyAtk = int.Parse(csvDatas[i][2]);
             enemyHp = int.Parse(csvDatas[i][3]);
-            
+            speed = csvDatas[i][4];
+            isFatorSkinny = csvDatas[i][5];
+            drops = csvDatas[i][6];
             GameObject enemy = Instantiate(Resources.Load<GameObject>("Prefabs/Enemy" + enemyID));
             EnemyModel_nos ene_script = enemy.AddComponent<EnemyModel_nos>();
+
             ene_script.enemyID = enemyID;
             ene_script.enemyName = enemyName;
             ene_script.enemyAtk = enemyAtk;
             ene_script.enemyHp = enemyHp;
+
+            if(speed == "遅い")
+            {
+                ene_script.speed = 1;
+            }
+            else if(speed == "普通")
+            {
+                ene_script.speed = 2;
+            }
+            else if(speed == "早い")
+            {
+                ene_script.speed = 3;
+            }
+
+            if(isFatorSkinny == "マッチョにさせる")
+            {
+                ene_script.enemyAtk *= 1;
+            }
+            else if(isFatorSkinny == "痩せさせる")
+            {
+                ene_script.enemyAtk *= -1;
+            }
+
+            if(drops == "30％で太るアイテムを出す")
+            {
+                ene_script.fatDrop = true;
+            }
+            else if(drops == "武器泥")
+            {
+
+            }
             //data.DataDisplay();
         }
     }
