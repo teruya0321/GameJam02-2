@@ -12,8 +12,8 @@ public class BulletScript : MonoBehaviour
 
     void Start()
     {
-        int Limit;
-        Limit = playerControl_Nat.Getlimit();
+        /*int Limit;
+        Limit = playerControl_Nat.Getlimit();*/
         playerControl_Nat = GetComponent<PlayerControl_Nat>();
     }
 
@@ -24,7 +24,7 @@ public class BulletScript : MonoBehaviour
 
     public void Shot(Vector3 dir)
     {
-        int Limit;
+        /*int Limit;
         Limit = playerControl_Nat.Getlimit();
 
         if (Limit == 1000)
@@ -34,7 +34,7 @@ public class BulletScript : MonoBehaviour
             Debug.Log(maxangle);
             Debug.Log(minangle);
 
-        }
+        }*/
 
         GetComponent<Rigidbody>().AddForce(dir);
         Vector3 vel = new Vector3(Random.Range(minangle, maxangle), Random.Range(minangle, maxangle), Random.Range(minangle, maxangle));

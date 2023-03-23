@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ChildrenScript : MonoBehaviour
 {
-    public GameObject prefab;
+    bool ishave = true;
+    float timer = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -15,14 +16,23 @@ public class ChildrenScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (!ishave)
+        {
+            timer -= Time.deltaTime;
+            GetComponent<BoxCollider>().enabled = false;
+        }
+
+        if(timer <= 0)
+        {
+            ishave = true;
+            timer = 3;
+            GetComponent<BoxCollider>().enabled = true;
+        }
     }
 
-    void OnTriggerEnter(Collider other)
+    public void remove()
     {
-        if (other.gameObject.name == "Player")
-        {
-            //this.gameObject.transform.parent = prefab.gameObject.transform;
-        }
+        transform.SetParent(null);
+        ishave = false;
     }
 }
