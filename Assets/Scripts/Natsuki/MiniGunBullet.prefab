@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 1807842660126588222}
   - component: {fileID: 5089936995835206116}
   - component: {fileID: 5305387855669907362}
-  - component: {fileID: 7162685774577686401}
   - component: {fileID: -4506674106848736862}
+  - component: {fileID: -472501935982452299}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: MiniGunBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 209fec96a25b4f84c8d71ca034e71e22, type: 2}
+  - {fileID: 2100000, guid: 5adda10c5ede28a41a99798342c70bb2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,23 +99,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7162685774577686401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4200123741338145802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5a7829ce3edd7848a325447bc7bc242, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minangle: 0
-  maxangle: 0
-  limit: 0
-  maxlimit: 100
-  minlimit: 0
 --- !u!54 &-4506674106848736862
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -132,3 +115,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-472501935982452299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4200123741338145802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a8898f37692673479e76cf710064f85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minangle: 0
+  maxangle: 0

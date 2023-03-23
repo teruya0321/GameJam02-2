@@ -9,7 +9,7 @@ public class PlayerControl_Nat : MonoBehaviour
     Vector3 roteuler;
     public float speed;
 
-    public GameObject bulletPrefab;
+    public GameObject[] bulletPrefab;
     GameObject bullet;
 
     public GameObject[] Barrel;
@@ -141,17 +141,17 @@ public class PlayerControl_Nat : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-            bullet = Instantiate(bulletPrefab, Barrel[0].transform.position, Quaternion.identity);
+            bullet = Instantiate(bulletPrefab[0], Barrel[0].transform.position, Quaternion.identity);
             Vector3 worldDir = ray.direction;
-            bullet.GetComponent<BulletScript>().Shot(worldDir * ballspeed);
+            bullet.GetComponent<HandGunBulletScript>().Shot(worldDir * ballspeed);
             Destroy(bullet, 1f);
         }
         else
         {
             Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-            bullet = Instantiate(bulletPrefab, Barrel[0].transform.position, Quaternion.identity);
+            bullet = Instantiate(bulletPrefab[0], Barrel[0].transform.position, Quaternion.identity);
             Vector3 worldDir = ray.direction;
-            bullet.GetComponent<BulletScript>().Shot(worldDir * ballspeed);
+            bullet.GetComponent<HandGunBulletScript>().Shot(worldDir * ballspeed);
             Destroy(bullet, 1f);
         }
     }
@@ -164,17 +164,17 @@ public class PlayerControl_Nat : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-            bullet = Instantiate(bulletPrefab, Barrel[1].transform.position, Quaternion.identity);
+            bullet = Instantiate(bulletPrefab[1], Barrel[1].transform.position, Quaternion.identity);
             Vector3 worldDir = ray.direction;
-            bullet.GetComponent<BulletScript>().Shot(worldDir * ballspeed);
+            bullet.GetComponent<MachinePistolBulletScript>().Shot(worldDir * ballspeed);
             Destroy(bullet, 1f);
         }
         else
         {
             Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-            bullet = Instantiate(bulletPrefab, Barrel[1].transform.position, Quaternion.identity);
+            bullet = Instantiate(bulletPrefab[1], Barrel[1].transform.position, Quaternion.identity);
             Vector3 worldDir = ray.direction;
-            bullet.GetComponent<BulletScript>().Shot(worldDir * ballspeed);
+            bullet.GetComponent<MachinePistolBulletScript>().Shot(worldDir * ballspeed);
             Destroy(bullet, 1f);
         }
     }
@@ -187,17 +187,17 @@ public class PlayerControl_Nat : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-            bullet = Instantiate(bulletPrefab, Barrel[2].transform.position, Quaternion.identity);
+            bullet = Instantiate(bulletPrefab[2], Barrel[2].transform.position, Quaternion.identity);
             Vector3 worldDir = ray.direction;
-            bullet.GetComponent<BulletScript>().Shot(worldDir * ballspeed);
+            bullet.GetComponent<ARBulletScript>().Shot(worldDir * ballspeed);
             Destroy(bullet, 1f);
         }
         else
         {
             Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-            bullet = Instantiate(bulletPrefab, Barrel[2].transform.position, Quaternion.identity);
+            bullet = Instantiate(bulletPrefab[2], Barrel[2].transform.position, Quaternion.identity);
             Vector3 worldDir = ray.direction;
-            bullet.GetComponent<BulletScript>().Shot(worldDir * ballspeed);
+            bullet.GetComponent<ARBulletScript>().Shot(worldDir * ballspeed);
             Destroy(bullet, 1f);
         }
     }
@@ -210,17 +210,17 @@ public class PlayerControl_Nat : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-            bullet = Instantiate(bulletPrefab, Barrel[3].transform.position, Quaternion.identity);
+            bullet = Instantiate(bulletPrefab[3], Barrel[3].transform.position, Quaternion.identity);
             Vector3 worldDir = ray.direction;
-            bullet.GetComponent<BulletScript>().Shot(worldDir * ballspeed);
+            bullet.GetComponent<LMGBulletScript>().Shot(worldDir * ballspeed);
             Destroy(bullet, 1f);
         }
         else
         {
             Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-            bullet = Instantiate(bulletPrefab, Barrel[3].transform.position, Quaternion.identity);
+            bullet = Instantiate(bulletPrefab[3], Barrel[3].transform.position, Quaternion.identity);
             Vector3 worldDir = ray.direction;
-            bullet.GetComponent<BulletScript>().Shot(worldDir * ballspeed);
+            bullet.GetComponent<LMGBulletScript>().Shot(worldDir * ballspeed);
             Destroy(bullet, 1f);
         }
     }
@@ -233,17 +233,17 @@ public class PlayerControl_Nat : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-            bullet = Instantiate(bulletPrefab, Barrel[4].transform.position, Quaternion.identity);
+            bullet = Instantiate(bulletPrefab[4], Barrel[4].transform.position, Quaternion.identity);
             Vector3 worldDir = ray.direction;
-            bullet.GetComponent<BulletScript>().Shot(worldDir * ballspeed);
+            bullet.GetComponent<MiniGunBulletScript>().Shot(worldDir * ballspeed);
             Destroy(bullet, 1f);
         }
         else
         {
             Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-            bullet = Instantiate(bulletPrefab, Barrel[4].transform.position, Quaternion.identity);
+            bullet = Instantiate(bulletPrefab[4], Barrel[4].transform.position, Quaternion.identity);
             Vector3 worldDir = ray.direction;
-            bullet.GetComponent<BulletScript>().Shot(worldDir * ballspeed);
+            bullet.GetComponent<MiniGunBulletScript>().Shot(worldDir * ballspeed);
             Destroy(bullet, 1f);
         }
     }
