@@ -10,12 +10,9 @@ public class PlayerControl_Nat : MonoBehaviour
     public float speed;
 
     public GameObject bulletPrefab;
-    public GameObject bulletPrefab1;
-
     GameObject bullet;
 
     public GameObject Barrel;
-    public GameObject Barrel1;
 
     public float ballspeed;
 
@@ -28,10 +25,13 @@ public class PlayerControl_Nat : MonoBehaviour
     public Transform parentTran;
     public GameObject arm;
 
+    public int count;
+
+    int Situation = 0;//0=素手、1=武器あり
 
     void Start()
     {
-        //InstantiatePrefab();
+        count = 0;
 
         controller = GetComponent<CharacterController>();
 
@@ -57,10 +57,16 @@ public class PlayerControl_Nat : MonoBehaviour
 
             movedir.x = Input.GetAxisRaw("Horizontal") * speed;
 
-            if (Input.GetButton("Jump"))
+            if (Input.GetMouseButtonDown(1))//右クリックでジャンプ
             {
                 movedir.y = 10f;
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            count++;
+            Invoke("Step", 0.4f);
         }
 
         movedir.y -= 20f * Time.deltaTime;
@@ -79,30 +85,41 @@ public class PlayerControl_Nat : MonoBehaviour
         transform.localEulerAngles = roteuler;
     }
 
+    void Step()
+    {
+        if (count != 2)
+        {
+            count = 0;
+        }
+        else if (count <= 2)
+        {
+            movedir.y = 5f;
+            movedir.z = -15f;
+            Invoke("reset", 0.4f);
+        }
+    }
+
+    void reset()
+    {
+        count = 0; 
+    }
+
     void Arm()
     {
-        if (Input.GetMouseButtonDown(0))//左クリックでRay発射
+        if (Input.GetMouseButtonDown(0) && Situation == 1)//左クリックでRay発射
         {
             LightArm();
-        }
-
-        if (Input.GetMouseButtonDown(1))//右クリックでRay発射
-        {
-            ReftArm();
         }
     }
 
     void LightArm()
     {
         limit -= 5;
-        Ray ray = new Ray(Player.transform.position, Player.transform.forward);
+        Ray ray = new Ray(Barrel.transform.position, Player.transform.forward);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
         {
             Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-
-
-            /*Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
             bullet = Instantiate(bulletPrefab, Barrel.transform.position, Quaternion.identity);
             Vector3 worldDir = ray.direction;
             bullet.GetComponent<BulletScript>().Shot(worldDir * ballspeed);
@@ -114,34 +131,7 @@ public class PlayerControl_Nat : MonoBehaviour
             bullet = Instantiate(bulletPrefab, Barrel.transform.position, Quaternion.identity);
             Vector3 worldDir = ray.direction;
             bullet.GetComponent<BulletScript>().Shot(worldDir * ballspeed);
-            Destroy(bullet, 1f);*/
-        }
-    }
-
-    void ReftArm()
-    {
-        limit -= 5;
-        Ray ray = new Ray(Player.transform.position, Player.transform.forward);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
-        {
-            Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-
-
-
-            /* Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-             bullet = Instantiate(bulletPrefab1, Barrel1.transform.position, Quaternion.identity);
-             Vector3 worldDir = ray.direction;
-             bullet.GetComponent<BulletScript>().Shot(worldDir * ballspeed);
-             Destroy(bullet, 1f);
-     }
-     else
-     {
-             Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-             bullet = Instantiate(bulletPrefab1, Barrel1.transform.position, Quaternion.identity);
-             Vector3 worldDir = ray.direction;
-             bullet.GetComponent<BulletScript>().Shot(worldDir * ballspeed);
-             Destroy(bullet, 1f);*/
+            Destroy(bullet, 1f);
         }
     }
 
@@ -149,7 +139,7 @@ public class PlayerControl_Nat : MonoBehaviour
     {
         if (other.gameObject.name == "Cube1")
         {
-            //Vector3 pos = this.transform.position;
+            Situation = 1;
             other.transform.position = arm.transform.position;
             other.gameObject.transform.SetParent(parentTran);
             other.transform.localEulerAngles = Vector3.zero;
