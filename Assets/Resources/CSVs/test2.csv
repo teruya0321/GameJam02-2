@@ -1,0 +1,9 @@
+敵ID,名前,攻撃力,HP
+0,EnemyFatRaw,10,10
+1,EnemyFatMiddle,15,15
+2,EnemyFatHigh,20,20
+3,EnemySkinnyRaw,5,5
+4,EnemySkinnyMiddle,8,5
+5,EnemySkinnyHigh,10,8
+6,EnemyUnderBoss,50,15
+7,EnemyBoss,200,28,
