@@ -18,7 +18,7 @@ public class PlayerControl_Nat : MonoBehaviour
 
     public GameObject Player;
 
-    public float limit;
+    public int limit;
     public int maxlimit;
     public int minlimit;
 
@@ -37,14 +37,13 @@ public class PlayerControl_Nat : MonoBehaviour
 
         roteuler = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0f);//Ž‹“_ˆÚ“®‚Ì“z‚Å‚·
 
-        limit = 50;
+        limit = 0;
     }
     void Update()
     {
-
         Arm();
 
-        limit += 10 * Time.deltaTime;
+        limit ++;
 
         limit = System.Math.Min(limit, maxlimit);
         limit = System.Math.Max(limit, minlimit);
@@ -66,7 +65,7 @@ public class PlayerControl_Nat : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S))
         {
             count++;
-            Invoke("Step", 0.4f);
+            Invoke("Step", 0.3f);
         }
 
         movedir.y -= 20f * Time.deltaTime;
@@ -95,7 +94,7 @@ public class PlayerControl_Nat : MonoBehaviour
         {
             movedir.y = 5f;
             movedir.z = -15f;
-            Invoke("reset", 0.4f);
+            Invoke("reset", 0.3f);
         }
     }
 
@@ -114,7 +113,7 @@ public class PlayerControl_Nat : MonoBehaviour
 
     void LightArm()
     {
-        limit -= 5;
+        limit -= 100;
         Ray ray = new Ray(Barrel.transform.position, Player.transform.forward);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit))
@@ -137,12 +136,17 @@ public class PlayerControl_Nat : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Cube1")
+        if (other.gameObject.name == "Weapon1")
         {
             Situation = 1;
             other.transform.position = arm.transform.position;
             other.gameObject.transform.SetParent(parentTran);
             other.transform.localEulerAngles = Vector3.zero;
         }
+    }
+
+    public int Getlimit()
+    {
+        return limit;
     }
 }

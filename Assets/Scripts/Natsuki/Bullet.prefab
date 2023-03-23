@@ -113,6 +113,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minangle: 0
   maxangle: 0
+  limit: 0
+  maxlimit: 100
+  minlimit: 0
 --- !u!54 &-4506674106848736862
 Rigidbody:
   m_ObjectHideFlags: 0
