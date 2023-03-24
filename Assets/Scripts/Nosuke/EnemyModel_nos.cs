@@ -12,33 +12,65 @@ public class EnemyModel_nos : MonoBehaviour
     public bool drops;
     public int dropItems;
     public bool skinny = false;
+    public bool lastBoss = false;
+
 
     float timer;
-    EnemyMove_nos moveScript;
 
-    public Transform shotPos;
+    float hptimer;
+
+    public Transform shot;
+    Vector3 shotPos;
 
     private void Start()
     {
-        moveScript = GetComponent<EnemyMove_nos>();
     }
     void Update()
     {
+        shotPos.x = transform.position.x;
+        shotPos.y = transform.position.y;
+        shotPos.z = transform.position.z + 1;
         if (skinny)
         {
-            LongAttack();
             Debug.Log("‚â‚¹");
+        }
+
+        if (lastBoss && timer <= 0.1)
+        {
+            enemyAtk *= -1;
+        }
+        if(enemyHp <= 0)
+        {
+            IsDead();
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Bullet")
+        {
+            enemyHp--;
+        }
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        if((collision.gameObject.tag == "Player" && hptimer >= 3) && (lastBoss || !skinny))
+        {
+            collision.gameObject.GetComponent<PlayerControl_Nat>().hp -= enemyAtk;
+            hptimer = 0;
+        }
+    }
     public void LongAttack()
     {
         timer += Time.deltaTime;
         if(timer >= 1)
         {
-            GameObject ammoModel = Instantiate(Resources.Load<GameObject>("Prefabs/EnemyAmmo"),shotPos);
+            GameObject ammoModel = Instantiate(Resources.Load<GameObject>("Prefabs/EnemyAmmo"),shotPos,Quaternion.identity);
+            Vector3 direction = transform.forward;
+            ammoModel.AddComponent<Rigidbody>().AddForce(direction * 30, ForceMode.Impulse);
             AmmoScript_nos ammoScript = ammoModel.AddComponent<AmmoScript_nos>();
             ammoScript.atk = enemyAtk;
+            timer = 0;
         }
     }
     void IsDead()

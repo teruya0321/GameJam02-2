@@ -77,6 +77,10 @@ public class EnemyMove_nos : MonoBehaviour
         if (isLookPlayer)
         {
             FoundPlayer();
+            if (model.skinny)
+            {
+                model.LongAttack();
+            }
         }
     }
 
