@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75513196}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.342, y: 1.216, z: 0.453}
+  m_LocalPosition: {x: 0.342, y: 1.216, z: 0.534}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4615,7 +4615,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!143 &1293513883
 CharacterController:
@@ -4634,7 +4634,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.69, z: 0}
+  m_Center: {x: 0, y: 0.75, z: 0}
 --- !u!65 &1293513886
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4646,8 +4646,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.8, z: 1}
-  m_Center: {x: 0, y: 0.75, z: 0}
+  m_Size: {x: 1, y: 1.5, z: 0.1}
+  m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!114 &1293513882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4681,7 +4681,7 @@ MonoBehaviour:
   parentTran: {fileID: 8367743174862348512}
   arm: {fileID: 75513196}
   count: 0
-  HGbulletpower: 0
+  PSbulletpower: 0
   MPbulletpower: 0
   ARbulletpower: 0
   LMGFbulletpower: 0

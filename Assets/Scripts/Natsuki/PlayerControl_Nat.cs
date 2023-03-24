@@ -48,7 +48,7 @@ public class PlayerControl_Nat : MonoBehaviour
 
     public SkinnedMeshRenderer blendshapeRenderer;
 
-    
+    Animator anim;
 
     public int hpLowerTime = 2;
     float hpTimer;
@@ -68,7 +68,7 @@ public class PlayerControl_Nat : MonoBehaviour
 
         limit = 0;
 
-            
+        anim = GetComponent<Animator>();
     }
     void Update()
     {
@@ -115,13 +115,19 @@ public class PlayerControl_Nat : MonoBehaviour
         {
 
             movedir.z = Input.GetAxisRaw("Vertical") * speed;
-
+            //anim.SetBool("Idel", false);
+            //anim.SetBool("Run", true);
 
             movedir.x = Input.GetAxisRaw("Horizontal") * speed;
+            //anim.SetBool("Idel", false);
+            //anim.SetBool("Run", true);
 
             if (Input.GetMouseButtonDown(1))//右クリックでジャンプ
             {
                 movedir.y = 10f;
+                anim.SetBool("Idel", false);
+                anim.SetBool("Jump", true);
+                Invoke("reSet", 0.5f);
             }
         }
 
@@ -129,6 +135,7 @@ public class PlayerControl_Nat : MonoBehaviour
         {
             count++;
             Invoke("Step", 0.3f);
+            Invoke("reSet", 0.5f);
         }
 
         movedir.y -= 20f * Time.deltaTime;
@@ -147,6 +154,11 @@ public class PlayerControl_Nat : MonoBehaviour
         transform.localEulerAngles = roteuler;
     }
 
+    void reSet()
+    {
+        anim.SetBool("Idel", true); 
+    }
+
     void Step()
     {
         if (count != 2)
@@ -157,6 +169,8 @@ public class PlayerControl_Nat : MonoBehaviour
         {
             movedir.y = 5f;
             movedir.z = -15f;
+            anim.SetBool("Idel", false);
+            anim.SetBool("backStep", true);
             Invoke("reset", 0.3f);
         }
     }
