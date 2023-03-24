@@ -9,23 +9,50 @@ public class EnemyModel_nos : MonoBehaviour
     public int enemyAtk;
     public int enemyHp;
     public float speed;
-    public bool fatDrop;
+    public bool drops;
+    public int dropItems;
+    public bool skinny = false;
 
-    private void Update()
+    float timer;
+    EnemyMove_nos moveScript;
+    public GameObject ammo;
+
+    private void Start()
     {
-        
+        moveScript = GetComponent<EnemyMove_nos>();
+    }
+    void Update()
+    {
+        if (skinny)
+        {
+            LongAttack();
+        }
     }
 
+    void LongAttack()
+    {
+        timer += Time.deltaTime;
+        if(timer >= 1)
+        {
+            GameObject ammoModel = Instantiate(ammo);
+            AmmoScript_nos ammoScript = ammoModel.AddComponent<AmmoScript_nos>();
+            ammoScript.atk = enemyAtk;
+        }
+    }
     void IsDead()
     {
-        if (fatDrop)
+        if(dropItems == 1)
         {
             int i = Random.Range(1, 11);
 
-            if(i <= 3)
+            if (i <= 3)
             {
                 Instantiate(Resources.Load<GameObject>("Prefabs/FatItem"));
             }
+        }
+        else if(dropItems == 2)
+        {
+            Instantiate(Resources.Load<GameObject>("Prefabs/MiniGun"));
         }
         Destroy(gameObject);
     }

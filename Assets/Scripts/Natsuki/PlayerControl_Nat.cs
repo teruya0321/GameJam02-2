@@ -43,6 +43,15 @@ public class PlayerControl_Nat : MonoBehaviour
     float LMGcount;
     float MNGcount;
 
+
+    public int hp = 0;
+
+    public SkinnedMeshRenderer blendshapeRenderer;
+
+    
+
+    public int hpLowerTime = 2;
+    float hpTimer;
     void Start()
     {
         HGcount = 0;
@@ -63,6 +72,32 @@ public class PlayerControl_Nat : MonoBehaviour
     }
     void Update()
     {
+        hpTimer += Time.deltaTime;
+
+        if(hpTimer >= hpLowerTime)
+        {
+            hp--;
+            hpTimer = 0;
+        }
+
+        if(hp > 100)
+        {
+            hp = 100;
+        }
+        if(hp > 0)
+        {
+            blendshapeRenderer.SetBlendShapeWeight(0, hp);
+            blendshapeRenderer.SetBlendShapeWeight(1, 0);
+        }
+        else if(hp < 0)
+        {
+            blendshapeRenderer.SetBlendShapeWeight(1, hp * -1);
+            blendshapeRenderer.SetBlendShapeWeight(0, 0);
+        }
+        if(hp < -100)
+        {
+            Debug.LogWarning("You Dead");
+        }
         HGcount += Time.deltaTime;
         MPcount += Time.deltaTime;
         ARcount += Time.deltaTime;

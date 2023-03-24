@@ -39,6 +39,7 @@ public class ReadCSV_nos : MonoBehaviour
             speed = csvDatas[i][4];
             isFatorSkinny = csvDatas[i][5];
             drops = csvDatas[i][6];
+
             GameObject enemy = Instantiate(Resources.Load<GameObject>("Prefabs/Enemy" + enemyID));
             EnemyModel_nos ene_script = enemy.AddComponent<EnemyModel_nos>();
 
@@ -67,15 +68,16 @@ public class ReadCSV_nos : MonoBehaviour
             else if(isFatorSkinny == "痩せさせる")
             {
                 ene_script.enemyAtk *= -1;
+                ene_script.skinny = true;
             }
 
             if(drops == "30％で太るアイテムを出す")
             {
-                ene_script.fatDrop = true;
+                ene_script.dropItems = 1;
             }
             else if(drops == "武器泥")
             {
-
+                ene_script.dropItems = 1;
             }
             //data.DataDisplay();
         }
