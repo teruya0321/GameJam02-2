@@ -23,6 +23,11 @@ ModelImporter:
     second: Dead
   externalObjects:
   - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert6
+    second: {fileID: 2100000, guid: 61c314fc90323c849ba979f15ffbbb4b, type: 2}
+  - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: pantu
