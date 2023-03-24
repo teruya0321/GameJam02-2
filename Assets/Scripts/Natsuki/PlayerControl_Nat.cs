@@ -12,7 +12,7 @@ public class PlayerControl_Nat : MonoBehaviour
     public GameObject[] bulletPrefab;
     GameObject bullet;
 
-    GameObject[] Barrel;
+    public GameObject[] Barrel;
 
     public float ballspeed;
 
