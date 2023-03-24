@@ -15,7 +15,8 @@ public class EnemyModel_nos : MonoBehaviour
 
     float timer;
     EnemyMove_nos moveScript;
-    public GameObject ammo;
+
+    public Transform shotPos;
 
     private void Start()
     {
@@ -26,15 +27,16 @@ public class EnemyModel_nos : MonoBehaviour
         if (skinny)
         {
             LongAttack();
+            Debug.Log("‚â‚¹");
         }
     }
 
-    void LongAttack()
+    public void LongAttack()
     {
         timer += Time.deltaTime;
         if(timer >= 1)
         {
-            GameObject ammoModel = Instantiate(ammo);
+            GameObject ammoModel = Instantiate(Resources.Load<GameObject>("Prefabs/EnemyAmmo"),shotPos);
             AmmoScript_nos ammoScript = ammoModel.AddComponent<AmmoScript_nos>();
             ammoScript.atk = enemyAtk;
         }

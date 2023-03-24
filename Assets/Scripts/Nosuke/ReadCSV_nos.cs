@@ -30,6 +30,7 @@ public class ReadCSV_nos : MonoBehaviour
                 string line = reader.ReadLine(); // ˆês‚¸‚Â“Ç‚İ‚İ
                 csvDatas.Add(line.Split(',')); // , ‹æØ‚è‚ÅƒŠƒXƒg‚É’Ç‰Ás
             }
+
             i = Random.Range(1, 4);
             
             enemyID = int.Parse(csvDatas[i][0]);
@@ -48,7 +49,16 @@ public class ReadCSV_nos : MonoBehaviour
             ene_script.enemyAtk = enemyAtk;
             ene_script.enemyHp = enemyHp;
 
-            if(speed == "’x‚¢")
+            EnemyMove_nos ene_move = enemy.AddComponent<EnemyMove_nos>();
+
+            ene_move.distance = 10;
+            ene_move.enemGravity = 10;
+            ene_move.enemSpeedZ = 50;
+            ene_move.enemSpeedRot = 100;
+            ene_move.enemJump = 500;
+            ene_move.enemTimerRimit = 3;
+            ene_move.enemTimerRandom = 3;
+            if (speed == "’x‚¢")
             {
                 ene_script.speed = 1;
             }

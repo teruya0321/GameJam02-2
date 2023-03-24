@@ -24,6 +24,8 @@ public class EnemyMove_nos : MonoBehaviour
 
     EnemyModel_nos model;
 
+    
+
     void Start()
     {
         Application.targetFrameRate = 60;
@@ -56,11 +58,7 @@ public class EnemyMove_nos : MonoBehaviour
                 isLookPlayer = false;
                 Debug.Log("“–‚½‚Á‚Ä‚È‚¢‚æ");
             }
-            
         }
-        
-
-        
         enemTimer += Time.deltaTime;
         if (enemTimer > enemTimerRimit + enemTimerRandom && !isLookPlayer)
         {
@@ -79,10 +77,6 @@ public class EnemyMove_nos : MonoBehaviour
         if (isLookPlayer)
         {
             FoundPlayer();
-        }
-        else
-        {
-            enemActions();
         }
     }
 
