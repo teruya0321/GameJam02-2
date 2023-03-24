@@ -127,5 +127,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98da8b21f68c3f64d9a4c95b9f2d6d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minangle: 0
-  maxangle: 0
+  minangle: -5
+  maxangle: 5

@@ -12,7 +12,7 @@ public class PlayerControl_Nat : MonoBehaviour
     public GameObject[] bulletPrefab;
     GameObject bullet;
 
-    public GameObject[] Barrel;
+    GameObject[] Barrel;
 
     public float ballspeed;
 
@@ -31,8 +31,26 @@ public class PlayerControl_Nat : MonoBehaviour
 
     ChildrenScript childrenScript;
 
+    public int HGbulletpower;
+    public int MPbulletpower;
+    public int ARbulletpower;
+    public int LMGFbulletpower;
+    public int MGbulletpower;
+
+    float HGcount;
+    float MPcount;
+    float ARcount;
+    float LMGcount;
+    float MNGcount;
+
     void Start()
     {
+        HGcount = 0;
+        MPcount = 0;
+        ARcount = 0;
+        LMGcount = 0;
+        MNGcount = 0;
+
         count = 0;
 
         controller = GetComponent<CharacterController>();
@@ -40,9 +58,17 @@ public class PlayerControl_Nat : MonoBehaviour
         roteuler = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0f);//視点移動の奴です
 
         limit = 0;
+
+            
     }
     void Update()
     {
+        HGcount += Time.deltaTime;
+        MPcount += Time.deltaTime;
+        ARcount += Time.deltaTime;
+        LMGcount += Time.deltaTime;
+        MNGcount += Time.deltaTime;
+
         Arm();
 
         limit ++;
@@ -112,22 +138,22 @@ public class PlayerControl_Nat : MonoBehaviour
             HandGun();
         }
 
-        if (Input.GetMouseButtonDown(0) && Situation == 2)//左クリックでRay発射
+        if (Input.GetMouseButton(0) && Situation == 2)//左クリックでRay発射
         {
             MachinePistol();
         }
 
-        if (Input.GetMouseButtonDown(0) && Situation == 3)//左クリックでRay発射
+        if (Input.GetMouseButton(0) && Situation == 3)//左クリックでRay発射
         {
             AR();
         }
 
-        if (Input.GetMouseButtonDown(0) && Situation == 4)//左クリックでRay発射
+        if (Input.GetMouseButton(0) && Situation == 4)//左クリックでRay発射
         {
             LMG();
         }
 
-        if (Input.GetMouseButtonDown(0) && Situation == 5)//左クリックでRay発射
+        if (Input.GetMouseButton(0) && Situation == 5)//左クリックでRay発射
         {
             MiniGun();
         }
@@ -135,116 +161,137 @@ public class PlayerControl_Nat : MonoBehaviour
 
     void HandGun()
     {
-        limit -= 100;
-        Ray ray = new Ray(Barrel[0].transform.position, Player.transform.forward);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (HGcount >= 1)
         {
-            Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-            bullet = Instantiate(bulletPrefab[0], Barrel[0].transform.position, Quaternion.identity);
-            Vector3 worldDir = ray.direction;
-            bullet.GetComponent<HandGunBulletScript>().Shot(worldDir * ballspeed);
-            Destroy(bullet, 1f);
-        }
-        else
-        {
-            Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-            bullet = Instantiate(bulletPrefab[0], Barrel[0].transform.position, Quaternion.identity);
-            Vector3 worldDir = ray.direction;
-            bullet.GetComponent<HandGunBulletScript>().Shot(worldDir * ballspeed);
-            Destroy(bullet, 1f);
+            Ray ray = new Ray(Barrel[0].transform.position, Player.transform.forward);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
+                bullet = Instantiate(bulletPrefab[0], Barrel[0].transform.position, Quaternion.identity);
+                Vector3 worldDir = ray.direction;
+                bullet.GetComponent<HandGunBulletScript>().Shot(worldDir * ballspeed);
+                HGcount = 0.7f;
+                Destroy(bullet, 1f);
+            }
+            else
+            {
+                Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
+                bullet = Instantiate(bulletPrefab[0], Barrel[0].transform.position, Quaternion.identity);
+                Vector3 worldDir = ray.direction;
+                bullet.GetComponent<HandGunBulletScript>().Shot(worldDir * ballspeed);
+                HGcount = 0.7f;
+                Destroy(bullet, 1f);
+            }
         }
     }
 
     void MachinePistol()
     {
-        limit -= 100;
-        Ray ray = new Ray(Barrel[1].transform.position, Player.transform.forward);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (MPcount >= 1)
         {
-            Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-            bullet = Instantiate(bulletPrefab[1], Barrel[1].transform.position, Quaternion.identity);
-            Vector3 worldDir = ray.direction;
-            bullet.GetComponent<MachinePistolBulletScript>().Shot(worldDir * ballspeed);
-            Destroy(bullet, 1f);
-        }
-        else
-        {
-            Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-            bullet = Instantiate(bulletPrefab[1], Barrel[1].transform.position, Quaternion.identity);
-            Vector3 worldDir = ray.direction;
-            bullet.GetComponent<MachinePistolBulletScript>().Shot(worldDir * ballspeed);
-            Destroy(bullet, 1f);
+            Ray ray = new Ray(Barrel[1].transform.position, Player.transform.forward);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
+                bullet = Instantiate(bulletPrefab[1], Barrel[1].transform.position, Quaternion.identity);
+                Vector3 worldDir = ray.direction;
+                bullet.GetComponent<MachinePistolBulletScript>().Shot(worldDir * ballspeed);
+                MPcount = 0.85f;
+                Destroy(bullet, 1f);
+            }
+            else
+            {
+                Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
+                bullet = Instantiate(bulletPrefab[1], Barrel[1].transform.position, Quaternion.identity);
+                Vector3 worldDir = ray.direction;
+                bullet.GetComponent<MachinePistolBulletScript>().Shot(worldDir * ballspeed);
+                MPcount = 0.85f;
+                Destroy(bullet, 1f);
+            }
         }
     }
 
     void AR()
     {
-        limit -= 100;
-        Ray ray = new Ray(Barrel[2].transform.position, Player.transform.forward);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (ARcount >= 1)
         {
-            Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-            bullet = Instantiate(bulletPrefab[2], Barrel[2].transform.position, Quaternion.identity);
-            Vector3 worldDir = ray.direction;
-            bullet.GetComponent<ARBulletScript>().Shot(worldDir * ballspeed);
-            Destroy(bullet, 1f);
-        }
-        else
-        {
-            Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-            bullet = Instantiate(bulletPrefab[2], Barrel[2].transform.position, Quaternion.identity);
-            Vector3 worldDir = ray.direction;
-            bullet.GetComponent<ARBulletScript>().Shot(worldDir * ballspeed);
-            Destroy(bullet, 1f);
+            Ray ray = new Ray(Barrel[2].transform.position, Player.transform.forward);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
+                bullet = Instantiate(bulletPrefab[2], Barrel[2].transform.position, Quaternion.identity);
+                Vector3 worldDir = ray.direction;
+                ARcount = 0.8f;
+                bullet.GetComponent<ARBulletScript>().Shot(worldDir * ballspeed);
+
+                Destroy(bullet, 1f);
+            }
+            else
+            {
+                Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
+                bullet = Instantiate(bulletPrefab[2], Barrel[2].transform.position, Quaternion.identity);
+                Vector3 worldDir = ray.direction;
+                bullet.GetComponent<ARBulletScript>().Shot(worldDir * ballspeed);
+                ARcount = 0.8f;
+                Destroy(bullet, 1f);
+            }
         }
     }
 
     void LMG()
     {
-        limit -= 100;
-        Ray ray = new Ray(Barrel[3].transform.position, Player.transform.forward);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if(LMGcount >= 1)
         {
-            Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-            bullet = Instantiate(bulletPrefab[3], Barrel[3].transform.position, Quaternion.identity);
-            Vector3 worldDir = ray.direction;
-            bullet.GetComponent<LMGBulletScript>().Shot(worldDir * ballspeed);
-            Destroy(bullet, 1f);
-        }
-        else
-        {
-            Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-            bullet = Instantiate(bulletPrefab[3], Barrel[3].transform.position, Quaternion.identity);
-            Vector3 worldDir = ray.direction;
-            bullet.GetComponent<LMGBulletScript>().Shot(worldDir * ballspeed);
-            Destroy(bullet, 1f);
+            Ray ray = new Ray(Barrel[3].transform.position, Player.transform.forward);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
+                bullet = Instantiate(bulletPrefab[3], Barrel[3].transform.position, Quaternion.identity);
+                Vector3 worldDir = ray.direction;
+                bullet.GetComponent<LMGBulletScript>().Shot(worldDir * ballspeed);
+                LMGcount = 0.8f;
+                Destroy(bullet, 1f);
+            }
+            else
+            {
+                Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
+                bullet = Instantiate(bulletPrefab[3], Barrel[3].transform.position, Quaternion.identity);
+                Vector3 worldDir = ray.direction;
+                bullet.GetComponent<LMGBulletScript>().Shot(worldDir * ballspeed);
+                LMGcount = 0.8f;
+                Destroy(bullet, 1f);
+            }
         }
     }
 
     void MiniGun()
     {
-        limit -= 100;
-        Ray ray = new Ray(Barrel[4].transform.position, Player.transform.forward);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (MNGcount >= 1)
         {
-            Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-            bullet = Instantiate(bulletPrefab[4], Barrel[4].transform.position, Quaternion.identity);
-            Vector3 worldDir = ray.direction;
-            bullet.GetComponent<MiniGunBulletScript>().Shot(worldDir * ballspeed);
-            Destroy(bullet, 1f);
-        }
-        else
-        {
-            Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-            bullet = Instantiate(bulletPrefab[4], Barrel[4].transform.position, Quaternion.identity);
-            Vector3 worldDir = ray.direction;
-            bullet.GetComponent<MiniGunBulletScript>().Shot(worldDir * ballspeed);
-            Destroy(bullet, 1f);
+            Ray ray = new Ray(Barrel[4].transform.position, Player.transform.forward);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
+                bullet = Instantiate(bulletPrefab[4], Barrel[4].transform.position, Quaternion.identity);
+                Vector3 worldDir = ray.direction;
+                bullet.GetComponent<MiniGunBulletScript>().Shot(worldDir * ballspeed);
+                MNGcount = 0.95f;
+                Destroy(bullet, 1f);
+            }
+            else
+            {
+                Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
+                bullet = Instantiate(bulletPrefab[4], Barrel[4].transform.position, Quaternion.identity);
+                Vector3 worldDir = ray.direction;
+                bullet.GetComponent<MiniGunBulletScript>().Shot(worldDir * ballspeed);
+                MNGcount = 0.95f;
+                Destroy(bullet, 1f);
+            }
         }
     }
 
@@ -319,10 +366,5 @@ public class PlayerControl_Nat : MonoBehaviour
             other.transform.localEulerAngles = Vector3.zero;
             childrenScript = other.gameObject.GetComponent<ChildrenScript>();
         }
-    }
-
-    public int Getlimit()
-    {
-        return limit;
     }
 }
