@@ -31,13 +31,13 @@ public class PlayerControl_Nat : MonoBehaviour
 
     ChildrenScript childrenScript;
 
-    public int HGbulletpower;
+    public int PSbulletpower;
     public int MPbulletpower;
     public int ARbulletpower;
     public int LMGFbulletpower;
     public int MGbulletpower;
 
-    float HGcount;
+    float PScount;
     float MPcount;
     float ARcount;
     float LMGcount;
@@ -54,7 +54,7 @@ public class PlayerControl_Nat : MonoBehaviour
     float hpTimer;
     void Start()
     {
-        HGcount = 0;
+        PScount = 0;
         MPcount = 0;
         ARcount = 0;
         LMGcount = 0;
@@ -98,7 +98,7 @@ public class PlayerControl_Nat : MonoBehaviour
         {
             Debug.LogWarning("You Dead");
         }
-        HGcount += Time.deltaTime;
+        PScount += Time.deltaTime;
         MPcount += Time.deltaTime;
         ARcount += Time.deltaTime;
         LMGcount += Time.deltaTime;
@@ -170,7 +170,7 @@ public class PlayerControl_Nat : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && Situation == 1)//左クリックでRay発射
         {
-            HandGun();
+            Pistol();
         }
 
         if (Input.GetMouseButton(0) && Situation == 2)//左クリックでRay発射
@@ -194,9 +194,9 @@ public class PlayerControl_Nat : MonoBehaviour
         }
     }
 
-    void HandGun()
+    void Pistol()
     {
-        if (HGcount >= 1)
+        if (PScount >= 1)
         {
             Ray ray = new Ray(Barrel[0].transform.position, Player.transform.forward);
             RaycastHit hit;
@@ -206,7 +206,7 @@ public class PlayerControl_Nat : MonoBehaviour
                 bullet = Instantiate(bulletPrefab[0], Barrel[0].transform.position, Quaternion.identity);
                 Vector3 worldDir = ray.direction;
                 bullet.GetComponent<HandGunBulletScript>().Shot(worldDir * ballspeed);
-                HGcount = 0.7f;
+                PScount = 0.7f;
                 Destroy(bullet, 1f);
             }
             else
@@ -215,7 +215,7 @@ public class PlayerControl_Nat : MonoBehaviour
                 bullet = Instantiate(bulletPrefab[0], Barrel[0].transform.position, Quaternion.identity);
                 Vector3 worldDir = ray.direction;
                 bullet.GetComponent<HandGunBulletScript>().Shot(worldDir * ballspeed);
-                HGcount = 0.7f;
+                PScount = 0.7f;
                 Destroy(bullet, 1f);
             }
         }
@@ -332,7 +332,7 @@ public class PlayerControl_Nat : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "HandGun")
+        if (other.gameObject.name == "Pistol")
         {
             if(childrenScript != null)
             {
@@ -360,7 +360,7 @@ public class PlayerControl_Nat : MonoBehaviour
             childrenScript = other.gameObject.GetComponent<ChildrenScript>();
         }
 
-        if (other.gameObject.name == "AR")
+        if (other.gameObject.name == "AssaultRifle")
         {
             if (childrenScript != null)
             {
