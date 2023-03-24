@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyMove_nos : MonoBehaviour
 {
-    public GameObject player;
+    GameObject player;
     public float distance = 10;
 
     CharacterController ChaCon;
@@ -31,6 +31,8 @@ public class EnemyMove_nos : MonoBehaviour
         Application.targetFrameRate = 60;
         ChaCon = GetComponent<CharacterController>();
         model = GetComponent<EnemyModel_nos>();
+
+        player = GameObject.Find("MainCharaAnim");
         if(model.speed == 1)
         {
             enemSpeedZ /= 2;

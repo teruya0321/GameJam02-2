@@ -10,6 +10,8 @@ public class ReadCSV_nos : MonoBehaviour
     public GameObject gamemanejar;
     LoadWall loadWall;
 
+    Vector3 pos;
+
     public int wallPhase;
 
     public int enemyID;
@@ -23,6 +25,7 @@ public class ReadCSV_nos : MonoBehaviour
     {
         csvFile = Resources.Load("CSVs/EnemyDate") as TextAsset; // Resoucesâ∫ÇÃCSVì«Ç›çûÇ›
         loadWall = gamemanejar.GetComponent<LoadWall>();
+        pos = gameObject.transform.position;
     }
     private void Update()
     {
@@ -62,7 +65,7 @@ public class ReadCSV_nos : MonoBehaviour
             isFatorSkinny = csvDatas[i][5];
             drops = csvDatas[i][6];
 
-            GameObject enemy = Instantiate(Resources.Load<GameObject>("Prefabs/Enemy" + enemyID));
+            GameObject enemy = Instantiate(Resources.Load<GameObject>("Prefabs/Enemy" + enemyID),pos,Quaternion.identity) ;
             EnemyModel_nos ene_script = enemy.AddComponent<EnemyModel_nos>();
 
             ene_script.enemyID = enemyID;
@@ -115,6 +118,8 @@ public class ReadCSV_nos : MonoBehaviour
             ene_move.enemJump = 500;
             ene_move.enemTimerRimit = 3;
             ene_move.enemTimerRandom = 3;
+
+            Destroy(gameObject);
         }
     }
 }
