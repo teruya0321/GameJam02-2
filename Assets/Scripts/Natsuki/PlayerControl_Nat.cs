@@ -52,6 +52,8 @@ public class PlayerControl_Nat : MonoBehaviour
 
     public int hpLowerTime = 2;
     float hpTimer;
+
+    bool onCursor = true;
     void Start()
     {
         PScount = 0;
@@ -69,9 +71,29 @@ public class PlayerControl_Nat : MonoBehaviour
         limit = 0;
 
         anim = GetComponent<Animator>();
+
+        onCursor = true;
     }
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            onCursor = !onCursor;
+        }
+
+        if (onCursor)
+        {
+            Cursor.visible = false;
+
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.visible = true;
+
+            Cursor.lockState = CursorLockMode.None;
+        }
+
         hpTimer += Time.deltaTime;
 
         if(hpTimer >= hpLowerTime)
@@ -150,7 +172,7 @@ public class PlayerControl_Nat : MonoBehaviour
 
         float mouseInputX = Input.GetAxis("Mouse X");//‰¡‚ÌŽ‹“_ˆÚ“®
 
-        roteuler = new Vector3(0, roteuler.y + mouseInputX * -1, 0f);
+        roteuler = new Vector3(0, roteuler.y + mouseInputX * 3, 0f);
         transform.localEulerAngles = roteuler;
     }
 

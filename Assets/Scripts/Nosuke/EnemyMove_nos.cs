@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyMove_nos : MonoBehaviour
 {
     GameObject player;
-    public float distance = 10;
+    public float distance = 100;
 
     CharacterController ChaCon;
     Vector3 moveDirection = Vector3.zero;
@@ -58,7 +58,7 @@ public class EnemyMove_nos : MonoBehaviour
             else
             {
                 isLookPlayer = false;
-                Debug.Log("当たってないよ");
+                //Debug.Log("当たってないよ");
             }
         }
         enemTimer += Time.deltaTime;
@@ -160,50 +160,4 @@ public class EnemyMove_nos : MonoBehaviour
         enemAction = Random.Range(0, 7);
         enemTimer = 0;//タイマーリセット
     }
-    /* //プレイヤー
-    public GameObject player;
-    private NavMeshAgent navMeshAgent;
-    //ランダムに方向を変えて移動
-    private float chargeTime;
-    private float timeCount;
-    //rayの距離
-    public float distance;
-    void Start()
-    {
-        navMeshAgent = GetComponent<NavMeshAgent>();
-        chargeTime = 3;
-    }
-    void Update()
-    {
-        Ray rayPosition = new Ray(transform.position, transform.forward.normalized * distance);
-        RaycastHit raycasthit;
-        Debug.DrawRay(transform.position, transform.forward.normalized * distance, Color.red);
-        if (Physics.Raycast(rayPosition, out raycasthit, distance))
-        {
-            if (raycasthit.collider.CompareTag("Player"))
-            {
-                Debug.Log("プレイヤーに当たった");
-                navMeshAgent.destination = player.transform.position;
-            }
-        }
-        else
-        {
-            Debug.Log("探し中");
-            //方向転換の時間経過
-            timeCount += Time.deltaTime;
-            //前進みます
-            transform.position += transform.forward * Time.deltaTime;
-        }
-        //一定の時間経過で方向転換
-        if (timeCount > chargeTime)
-        {
-            //ランダムに角度変更
-            Vector3 course = new Vector3(0, UnityEngine.Random.Range(0, 360), 0);
-            transform.localRotation = Quaternion.Euler(course);
-            //0に戻す
-            timeCount = 0;
-        }
-    }*/
-
-
 }

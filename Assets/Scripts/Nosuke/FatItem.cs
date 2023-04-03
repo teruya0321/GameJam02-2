@@ -9,6 +9,7 @@ public class FatItem : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<PlayerControl_Nat>().hp += 10;
+            Destroy(gameObject);
         }
     }
 }

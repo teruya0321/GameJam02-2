@@ -17,8 +17,6 @@ public class EnemyModel_nos : MonoBehaviour
 
     float timer;
 
-    float hptimer;
-
     public Transform shot;
     Vector3 shotPos;
 
@@ -54,10 +52,9 @@ public class EnemyModel_nos : MonoBehaviour
     }
     private void OnCollisionStay(Collision collision)
     {
-        if((collision.gameObject.tag == "Player" && hptimer >= 3) && (lastBoss || !skinny))
+        if(collision.gameObject.tag == "Player" && !skinny)
         {
             collision.gameObject.GetComponent<PlayerControl_Nat>().hp -= enemyAtk;
-            hptimer = 0;
         }
     }
     public void LongAttack()

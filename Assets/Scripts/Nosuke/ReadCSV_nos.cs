@@ -42,19 +42,19 @@ public class ReadCSV_nos : MonoBehaviour
 
             if (loadWall.wallCount == 0)
             {
-                i = Random.Range(0, 6);
+                i = Random.Range(1, 6);
             }
             else if (loadWall.wallCount == 1)
             {
-                i = Random.Range(0, 7);
+                i = Random.Range(1, 7);
             }
             else if (loadWall.wallCount == 2)
             {
-                i = Random.Range(0, 8);
+                i = Random.Range(1, 8);
             }
             else
             {
-                i = Random.Range(0, 8);
+                i = Random.Range(1, 8);
             }
 
             enemyID = int.Parse(csvDatas[i][0]);
