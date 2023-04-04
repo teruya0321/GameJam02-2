@@ -225,6 +225,26 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1293513882, guid: f055e790ef4528b4a94df03175ee2962, type: 3}
+      propertyPath: ARbulletpower
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293513882, guid: f055e790ef4528b4a94df03175ee2962, type: 3}
+      propertyPath: MGbulletpower
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293513882, guid: f055e790ef4528b4a94df03175ee2962, type: 3}
+      propertyPath: MPbulletpower
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293513882, guid: f055e790ef4528b4a94df03175ee2962, type: 3}
+      propertyPath: PSbulletpower
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293513882, guid: f055e790ef4528b4a94df03175ee2962, type: 3}
+      propertyPath: LMGFbulletpower
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293513882, guid: f055e790ef4528b4a94df03175ee2962, type: 3}
       propertyPath: Barrel.Array.data[0]
       value: 
       objectReference: {fileID: 79877863}
@@ -314,7 +334,7 @@ GameObject:
   - component: {fileID: 440455419}
   m_Layer: 0
   m_Name: Rock
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -390,8 +410,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 440455414}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.3, y: 0.6, z: 19.4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.3, y: 1, z: 19.4}
+  m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
