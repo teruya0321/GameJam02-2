@@ -238,21 +238,25 @@ public class PlayerControl_Nat : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-                bullet = Instantiate(bulletPrefab[0], Barrel[0].transform.position, Quaternion.identity);
-                Vector3 worldDir = ray.direction;
-                bullet.GetComponent<HandGunBulletScript>().Shot(worldDir * ballspeed);
-                PScount = 0.7f;
-                Destroy(bullet, 1f);
+                if (hit.collider.CompareTag("Enemy"))
+                {
+                    Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
+                    Debug.Log("‚ ‚½‚è‚Ü‚µ‚½");
+                    PScount = 0.7f;
+                    /*bullet = Instantiate(bulletPrefab[0], Barrel[0].transform.position, Quaternion.identity);
+                    Vector3 worldDir = ray.direction;
+                    bullet.GetComponent<HandGunBulletScript>().Shot(worldDir * ballspeed);
+                    Destroy(bullet, 1f);*/
+                }
             }
             else
             {
                 Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-                bullet = Instantiate(bulletPrefab[0], Barrel[0].transform.position, Quaternion.identity);
+                PScount = 0.7f;
+                /*bullet = Instantiate(bulletPrefab[0], Barrel[0].transform.position, Quaternion.identity);
                 Vector3 worldDir = ray.direction;
                 bullet.GetComponent<HandGunBulletScript>().Shot(worldDir * ballspeed);
-                PScount = 0.7f;
-                Destroy(bullet, 1f);
+                Destroy(bullet, 1f);*/
             }
         }
     }
@@ -265,21 +269,25 @@ public class PlayerControl_Nat : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-                bullet = Instantiate(bulletPrefab[1], Barrel[1].transform.position, Quaternion.identity);
-                Vector3 worldDir = ray.direction;
-                bullet.GetComponent<MachinePistolBulletScript>().Shot(worldDir * ballspeed);
-                MPcount = 0.85f;
-                Destroy(bullet, 1f);
+                if (hit.collider.CompareTag("Enemy"))
+                {
+                    Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
+                    Debug.Log("‚ ‚½‚è‚Ü‚µ‚½");
+                    MPcount = 0.85f;
+                    /*bullet = Instantiate(bulletPrefab[1], Barrel[1].transform.position, Quaternion.identity);
+                    Vector3 worldDir = ray.direction;
+                    bullet.GetComponent<MachinePistolBulletScript>().Shot(worldDir * ballspeed);
+                    Destroy(bullet, 1f);*/
+                }
             }
             else
             {
                 Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-                bullet = Instantiate(bulletPrefab[1], Barrel[1].transform.position, Quaternion.identity);
+                MPcount = 0.85f;
+                /*bullet = Instantiate(bulletPrefab[1], Barrel[1].transform.position, Quaternion.identity);
                 Vector3 worldDir = ray.direction;
                 bullet.GetComponent<MachinePistolBulletScript>().Shot(worldDir * ballspeed);
-                MPcount = 0.85f;
-                Destroy(bullet, 1f);
+                Destroy(bullet, 1f);*/
             }
         }
     }
@@ -292,22 +300,26 @@ public class PlayerControl_Nat : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-                bullet = Instantiate(bulletPrefab[2], Barrel[2].transform.position, Quaternion.identity);
-                Vector3 worldDir = ray.direction;
-                ARcount = 0.8f;
-                bullet.GetComponent<ARBulletScript>().Shot(worldDir * ballspeed);
-
-                Destroy(bullet, 1f);
+                if (hit.collider.CompareTag("Enemy"))
+                {
+                    Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
+                    Debug.Log("‚ ‚½‚è‚Ü‚µ‚½");
+                    ARcount = 0.8f;
+                    /*bullet = Instantiate(bulletPrefab[2], Barrel[2].transform.position, Quaternion.identity);
+                    Vector3 worldDir = ray.direction;
+                    bullet.GetComponent<ARBulletScript>().Shot(worldDir * ballspeed);
+                    Destroy(bullet, 1f); */
+                }
+                
             }
             else
             {
                 Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-                bullet = Instantiate(bulletPrefab[2], Barrel[2].transform.position, Quaternion.identity);
+                ARcount = 0.8f;
+                /*bullet = Instantiate(bulletPrefab[2], Barrel[2].transform.position, Quaternion.identity);
                 Vector3 worldDir = ray.direction;
                 bullet.GetComponent<ARBulletScript>().Shot(worldDir * ballspeed);
-                ARcount = 0.8f;
-                Destroy(bullet, 1f);
+                Destroy(bullet, 1f);*/
             }
         }
     }
@@ -320,21 +332,25 @@ public class PlayerControl_Nat : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-                bullet = Instantiate(bulletPrefab[3], Barrel[3].transform.position, Quaternion.identity);
-                Vector3 worldDir = ray.direction;
-                bullet.GetComponent<LMGBulletScript>().Shot(worldDir * ballspeed);
-                LMGcount = 0.8f;
-                Destroy(bullet, 1f);
+                if (hit.collider.CompareTag("Enemy"))
+                {
+                    Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
+                    Debug.Log("‚ ‚½‚è‚Ü‚µ‚½");
+                    LMGcount = 0.8f;
+                    /*bullet = Instantiate(bulletPrefab[3], Barrel[3].transform.position, Quaternion.identity);
+                    Vector3 worldDir = ray.direction;
+                    bullet.GetComponent<LMGBulletScript>().Shot(worldDir * ballspeed);
+                    Destroy(bullet, 1f);*/
+                }
             }
             else
             {
                 Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-                bullet = Instantiate(bulletPrefab[3], Barrel[3].transform.position, Quaternion.identity);
+                LMGcount = 0.8f;
+                /*bullet = Instantiate(bulletPrefab[3], Barrel[3].transform.position, Quaternion.identity);
                 Vector3 worldDir = ray.direction;
                 bullet.GetComponent<LMGBulletScript>().Shot(worldDir * ballspeed);
-                LMGcount = 0.8f;
-                Destroy(bullet, 1f);
+                Destroy(bullet, 1f);*/
             }
         }
     }
@@ -347,21 +363,25 @@ public class PlayerControl_Nat : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-                bullet = Instantiate(bulletPrefab[4], Barrel[4].transform.position, Quaternion.identity);
-                Vector3 worldDir = ray.direction;
-                bullet.GetComponent<MiniGunBulletScript>().Shot(worldDir * ballspeed);
-                MNGcount = 0.95f;
-                Destroy(bullet, 1f);
+                if (hit.collider.CompareTag("Enemy"))
+                {
+                    Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
+                    Debug.Log("‚ ‚½‚è‚Ü‚µ‚½");
+                    MNGcount = 0.95f;
+                    /*bullet = Instantiate(bulletPrefab[4], Barrel[4].transform.position, Quaternion.identity);
+                    Vector3 worldDir = ray.direction;
+                    bullet.GetComponent<MiniGunBulletScript>().Shot(worldDir * ballspeed);
+                    Destroy(bullet, 1f);*/
+                }
             }
             else
             {
                 Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
-                bullet = Instantiate(bulletPrefab[4], Barrel[4].transform.position, Quaternion.identity);
+                MNGcount = 0.95f;
+                /*bullet = Instantiate(bulletPrefab[4], Barrel[4].transform.position, Quaternion.identity);
                 Vector3 worldDir = ray.direction;
                 bullet.GetComponent<MiniGunBulletScript>().Shot(worldDir * ballspeed);
-                MNGcount = 0.95f;
-                Destroy(bullet, 1f);
+                Destroy(bullet, 1f);*/
             }
         }
     }
