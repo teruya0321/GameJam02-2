@@ -13,32 +13,26 @@ public class EnemyModel_nos : MonoBehaviour
     public int dropItems;
     public bool skinny = false;
     public bool lastBoss = false;
-
+    // 敵のデータ
 
     float timer;
 
     public Transform shot;
     Vector3 shotPos;
-
-    private void Start()
-    {
-    }
+    // 遠距離の敵用の射撃位置
     void Update()
     {
         shotPos.x = transform.position.x;
         shotPos.y = transform.position.y;
         shotPos.z = transform.position.z + 1;
-        if (skinny)
-        {
-            Debug.Log("やせ");
-        }
-
+        // 射撃位置を決める
         if (lastBoss && timer <= 0.1)
         {
             enemyAtk *= -1;
         }
         if(enemyHp <= 0)
         {
+            // HPが0になると倒される処理をする
             IsDead();
         }
     }
@@ -47,6 +41,7 @@ public class EnemyModel_nos : MonoBehaviour
     {
         if(collision.gameObject.tag == "Bullet")
         {
+            // 敵のHPを減らす処理
             enemyHp--;
         }
     }

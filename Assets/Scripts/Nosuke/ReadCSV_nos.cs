@@ -21,6 +21,8 @@ public class ReadCSV_nos : MonoBehaviour
     public string speed;
     public string isFatorSkinny;
     public string drops;
+
+    public bool boss;
     private void Awake()
     {
         csvFile = Resources.Load("CSVs/EnemyDate") as TextAsset; // Resoucesâ∫ÇÃCSVì«Ç›çûÇ›
@@ -50,7 +52,14 @@ public class ReadCSV_nos : MonoBehaviour
             }
             else if (loadWall.wallCount == 2)
             {
-                i = Random.Range(1, 8);
+                if (boss)
+                {
+                    i = 8;
+                }
+                else
+                {
+                    i = Random.Range(1, 8);
+                }
             }
             else
             {
