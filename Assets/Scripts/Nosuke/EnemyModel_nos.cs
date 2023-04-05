@@ -36,14 +36,11 @@ public class EnemyModel_nos : MonoBehaviour
             IsDead();
         }
     }
-
-    private void OnCollisionEnter(Collision collision)
+     
+    public void damage(int damage)
     {
-        if(collision.gameObject.tag == "Bullet")
-        {
-            // “G‚ÌHP‚ğŒ¸‚ç‚·ˆ—
-            enemyHp--;
-        }
+        // “G‚ÌHP‚ğŒ¸‚ç‚·ˆ—
+        enemyHp--;
     }
     private void OnCollisionStay(Collision collision)
     {

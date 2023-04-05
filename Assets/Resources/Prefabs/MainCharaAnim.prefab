@@ -4663,12 +4663,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  bulletPrefab:
-  - {fileID: 4200123741338145802, guid: b0beffca1b4b0f54ebd3521af21d3767, type: 3}
-  - {fileID: 4200123741338145802, guid: 53817caf12c3d9c4085c37375b647156, type: 3}
-  - {fileID: 4200123741338145802, guid: a2da1346407e51746bb5221eb5ed2e17, type: 3}
-  - {fileID: 4200123741338145802, guid: c39c48c9fef07e749ac8a4738014d7d6, type: 3}
-  - {fileID: 4200123741338145802, guid: b095bb6d3a79b1542902f906a17bd97a, type: 3}
   Barrel:
   - {fileID: 0}
   - {fileID: 0}
@@ -4683,11 +4677,11 @@ MonoBehaviour:
   parentTran: {fileID: 8367743174862348512}
   arm: {fileID: 75513196}
   count: 0
-  PSbulletpower: 0
-  MPbulletpower: 0
-  ARbulletpower: 0
-  LMGFbulletpower: 0
-  MGbulletpower: 0
+  PSbulletpower: 1
+  MPbulletpower: 1
+  ARbulletpower: 3
+  LMGFbulletpower: 5
+  MGbulletpower: 3
   hp: 100
   blendshapeRenderer: {fileID: 1029721565486588516}
   hpLowerTime: 2

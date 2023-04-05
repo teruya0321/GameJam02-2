@@ -9,8 +9,8 @@ public class PlayerControl_Nat : MonoBehaviour
     Vector3 roteuler;
     public float speed;
 
-    public GameObject[] bulletPrefab;
-    GameObject bullet;
+    //public GameObject[] bulletPrefab;
+    //GameObject bullet;
 
     public GameObject[] Barrel;
 
@@ -34,7 +34,7 @@ public class PlayerControl_Nat : MonoBehaviour
     public int PSbulletpower;
     public int MPbulletpower;
     public int ARbulletpower;
-    public int LMGFbulletpower;
+    public int LMGbulletpower;
     public int MGbulletpower;
 
     float PScount;
@@ -240,6 +240,8 @@ public class PlayerControl_Nat : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Enemy"))
                 {
+                    hit.transform.GetComponent<EnemyModel_nos>().damage(PSbulletpower);
+
                     Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
                     Debug.Log("‚ ‚½‚è‚Ü‚µ‚½");
                     PScount = 0.7f;
@@ -271,6 +273,8 @@ public class PlayerControl_Nat : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Enemy"))
                 {
+                    hit.transform.GetComponent<EnemyModel_nos>().damage(MPbulletpower);
+
                     Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
                     Debug.Log("‚ ‚½‚è‚Ü‚µ‚½");
                     MPcount = 0.85f;
@@ -302,6 +306,8 @@ public class PlayerControl_Nat : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Enemy"))
                 {
+                    hit.transform.GetComponent<EnemyModel_nos>().damage(ARbulletpower);
+
                     Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
                     Debug.Log("‚ ‚½‚è‚Ü‚µ‚½");
                     ARcount = 0.8f;
@@ -334,6 +340,8 @@ public class PlayerControl_Nat : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Enemy"))
                 {
+                    hit.transform.GetComponent<EnemyModel_nos>().damage(LMGbulletpower);
+
                     Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
                     Debug.Log("‚ ‚½‚è‚Ü‚µ‚½");
                     LMGcount = 0.8f;
@@ -365,6 +373,8 @@ public class PlayerControl_Nat : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Enemy"))
                 {
+                    hit.transform.GetComponent<EnemyModel_nos>().damage(MGbulletpower);
+
                     Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
                     Debug.Log("‚ ‚½‚è‚Ü‚µ‚½");
                     MNGcount = 0.95f;
