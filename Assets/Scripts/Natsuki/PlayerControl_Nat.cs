@@ -9,10 +9,11 @@ public class PlayerControl_Nat : MonoBehaviour
     Vector3 roteuler;
     public float speed;
 
-    //public GameObject[] bulletPrefab;
-    //GameObject bullet;
+    public GameObject[] bulletPrefab;
+    GameObject bullet;
 
     public GameObject[] Barrel;
+    public GameObject[] finFanelbarrel;
 
     public float ballspeed;
 
@@ -24,6 +25,7 @@ public class PlayerControl_Nat : MonoBehaviour
 
     public Transform parentTran;
     public GameObject arm;
+    public GameObject BackPack;
 
     public int count;
 
@@ -36,6 +38,7 @@ public class PlayerControl_Nat : MonoBehaviour
     public int ARbulletpower;
     public int LMGbulletpower;
     public int MGbulletpower;
+    public int FinFanelpower;
 
     float PScount;
     float MPcount;
@@ -228,6 +231,11 @@ public class PlayerControl_Nat : MonoBehaviour
         {
             MiniGun();
         }
+        
+        if (Input.GetMouseButton(0) && Situation == 6)//左クリックでRay発射
+        {
+            FinFanel();
+        }
     }
 
     void Pistol()
@@ -396,6 +404,39 @@ public class PlayerControl_Nat : MonoBehaviour
         }
     }
 
+    void FinFanel()
+    {
+        if (MNGcount >= 1)
+        {
+            Ray ray = new Ray(finFanelbarrel[Random.Range(0, 6)].transform.position, Player.transform.forward);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.CompareTag("Enemy"))
+                {
+                    hit.transform.GetComponent<EnemyModel_nos>().damage(FinFanelpower);
+
+                    Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
+                    Debug.Log("あたりました");
+                    MNGcount = 0.95f;
+                    bullet = Instantiate(bulletPrefab[0], finFanelbarrel[Random.Range(0, 6)].transform.position, Quaternion.identity);
+                    Vector3 worldDir = ray.direction;
+                    bullet.GetComponent<FinFannelBeamScript>().Shot(worldDir * ballspeed);
+                    Destroy(bullet, 0.1f);
+                }
+            }
+            else
+            {
+                Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
+                MNGcount = 0.95f;
+                /*bullet = Instantiate(bulletPrefab[0], Barrel[5].transform.position, Quaternion.identity);
+                Vector3 worldDir = ray.direction;
+                bullet.GetComponent<MiniGunBulletScript>().Shot(worldDir * ballspeed);
+                Destroy(bullet, 1f);*/
+            }
+        }
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "Pistol")
@@ -465,6 +506,23 @@ public class PlayerControl_Nat : MonoBehaviour
             other.transform.position = arm.transform.position;
             other.gameObject.transform.SetParent(parentTran);
             other.transform.localEulerAngles = Vector3.zero;
+            childrenScript = other.gameObject.GetComponent<ChildrenScript>();
+        }
+
+        if (other.gameObject.name == "FinFanel")
+        {
+            if (childrenScript != null)
+            {
+                childrenScript.remove();
+            }
+
+            Situation = 6;
+            other.transform.position = BackPack.transform.position;
+            other.gameObject.transform.SetParent(parentTran);
+            //other.transform.localEulerAngles = Vector3.zero;
+            Vector3 eulerAngles = transform.eulerAngles; // ローカル変数に格納
+            eulerAngles.y = -90; // ローカル変数に格納した値を上書き
+            transform.eulerAngles = eulerAngles; // ローカル変数を代入
             childrenScript = other.gameObject.GetComponent<ChildrenScript>();
         }
     }
