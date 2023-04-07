@@ -19,9 +19,9 @@ public class PlayerControl_Nat : MonoBehaviour
 
     public GameObject Player;
 
-    public int limit;
+    /*public int limit;
     public int maxlimit;
-    public int minlimit;
+    public int minlimit;*/
 
     public Transform parentTran;
     public GameObject arm;
@@ -75,7 +75,7 @@ public class PlayerControl_Nat : MonoBehaviour
 
         roteuler = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0f);//視点移動の奴です
 
-        limit = 0;
+        //limit = 0;
 
         anim = GetComponent<Animator>();
 
@@ -126,7 +126,13 @@ public class PlayerControl_Nat : MonoBehaviour
         if(hp < -100)
         {
             Debug.LogWarning("You Dead");
+            anim.SetBool("Idel", false);
+            anim.SetBool("Run", false);
+            anim.SetBool("Jump", false);
+            anim.SetBool("backStep", false);
+            anim.SetBool("Dead", true);
         }
+
         PScount += Time.deltaTime;
         MPcount += Time.deltaTime;
         MGcount += Time.deltaTime;
@@ -137,12 +143,12 @@ public class PlayerControl_Nat : MonoBehaviour
 
         Arm();
 
-        limit ++;
+        //limit ++;
 
-        limit = System.Math.Min(limit, maxlimit);
-        limit = System.Math.Max(limit, minlimit);
+        /*limit = System.Math.Min(limit, maxlimit);
+        limit = System.Math.Max(limit, minlimit);*/
 
-        if (controller.isGrounded)
+        if (controller.isGrounded)//プレイヤーの移動部分になっております
         {
             movedir.z = Input.GetAxisRaw("Vertical") * speed;
 
@@ -183,7 +189,7 @@ public class PlayerControl_Nat : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S))//SをダブルタップでバックStep
         {
             count++;
             Invoke("Step", 0.2f);
@@ -205,7 +211,7 @@ public class PlayerControl_Nat : MonoBehaviour
         transform.localEulerAngles = roteuler;
     }
 
-    void Step()
+    void Step()//バックStepだぜ
     {
         if (count != 2)
         {
@@ -226,7 +232,7 @@ public class PlayerControl_Nat : MonoBehaviour
         count = 0; 
     }
 
-    void Arm()
+    void Arm()//状態に応じての武器の切り替えだぜ
     {
         if (Input.GetMouseButtonDown(0) && Situation == 1)//左クリックでRay発射
         {
@@ -264,7 +270,7 @@ public class PlayerControl_Nat : MonoBehaviour
         }
     }
 
-    void Pistol()
+    void Pistol()//Pistolだよ
     {
         if (PScount >= 1)
         {
@@ -297,7 +303,7 @@ public class PlayerControl_Nat : MonoBehaviour
         }
     }
 
-    void MachinePistol()
+    void MachinePistol()//マシンPistolだよ
     {
         if (MPcount >= 1)
         {
@@ -330,7 +336,7 @@ public class PlayerControl_Nat : MonoBehaviour
         }
     }
 
-    void MG()
+    void MG()//100mmマシンガンだよ
     {
         if (MGcount >= 1)
         {
@@ -363,7 +369,7 @@ public class PlayerControl_Nat : MonoBehaviour
         }
     }
 
-    void AR()
+    void AR()//アサルトライフルだよ
     {
         if (ARcount >= 1)
         {
@@ -397,7 +403,7 @@ public class PlayerControl_Nat : MonoBehaviour
         }
     }
 
-    void LMG()
+    void LMG()//ライトマシンガンだよ
     {
         if(LMGcount >= 1)
         {
@@ -430,7 +436,7 @@ public class PlayerControl_Nat : MonoBehaviour
         }
     }
 
-    void MiniGun()
+    void MiniGun()//ミニガンがよ
     {
         if (MNGcount >= 1)
         {
@@ -463,7 +469,7 @@ public class PlayerControl_Nat : MonoBehaviour
         }
     }
 
-    void FinFanel()
+    void FinFanel()//フィンファンネルッ!!!
     {
         if (FinFanelcount >= 1)
         {
