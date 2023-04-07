@@ -49,7 +49,6 @@ public class PlayerControl_Nat : MonoBehaviour
     float MNGcount;
     float FinFanelcount;
 
-
     public int hp = 0;
 
     public SkinnedMeshRenderer blendshapeRenderer;
@@ -145,29 +144,49 @@ public class PlayerControl_Nat : MonoBehaviour
 
         if (controller.isGrounded)
         {
-
             movedir.z = Input.GetAxisRaw("Vertical") * speed;
-            //anim.SetBool("Idel", false);
-            //anim.SetBool("Run", true);
+
+            if(movedir.z == 10 || movedir.z == -10)
+            {
+                anim.SetBool("Idel", false);
+                anim.SetBool("Run", true);
+            }
+            else if(movedir.z == 0)
+            {
+                anim.SetBool("Idel", true);
+                anim.SetBool("Run", false);
+            }
 
             movedir.x = Input.GetAxisRaw("Horizontal") * speed;
-            //anim.SetBool("Idel", false);
-            //anim.SetBool("Run", true);
+
+            if (movedir.x == 10 || movedir.x == -10)
+            {
+                anim.SetBool("Idel", false);
+                anim.SetBool("Run", true);
+            }
 
             if (Input.GetMouseButtonDown(1))//右クリックでジャンプ
             {
                 movedir.y = 10f;
-                anim.SetBool("Idel", false);
-                anim.SetBool("Jump", true);
-                Invoke("reSet", 0.5f);
+                if(movedir.y <= 1)
+                {
+                    Debug.Log(movedir.y);
+                    anim.SetBool("Idel", false);
+                    anim.SetBool("Jump", true);
+                }
+                else if (movedir.y >= 0)
+                {
+                    Debug.Log(movedir.y);
+                    anim.SetBool("Idel", true);
+                    anim.SetBool("Jump", false);
+                }
             }
         }
 
         if (Input.GetKeyDown(KeyCode.S))
         {
             count++;
-            Invoke("Step", 0.3f);
-            Invoke("reSet", 0.5f);
+            Invoke("Step", 0.2f);
         }
 
         movedir.y -= 20f * Time.deltaTime;
@@ -184,11 +203,6 @@ public class PlayerControl_Nat : MonoBehaviour
 
         roteuler = new Vector3(0, roteuler.y + mouseInputX * 3, 0f);
         transform.localEulerAngles = roteuler;
-    }
-
-    void reSet()
-    {
-        anim.SetBool("Idel", true); 
     }
 
     void Step()
