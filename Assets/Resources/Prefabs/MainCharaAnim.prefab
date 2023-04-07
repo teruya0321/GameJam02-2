@@ -1651,6 +1651,37 @@ Transform:
   m_Father: {fileID: 1939974544188714691}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2976267418528262245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2558697024861938882}
+  m_Layer: 0
+  m_Name: BackPack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2558697024861938882
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2976267418528262245}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.028, y: 1.118, z: -0.15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8367743174862348512}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3011489948576843770
 GameObject:
   m_ObjectHideFlags: 0
@@ -4580,6 +4611,7 @@ Transform:
   - {fileID: 2231325632468915057}
   - {fileID: 382821403}
   - {fileID: 75513197}
+  - {fileID: 2558697024861938882}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4680,7 +4712,7 @@ MonoBehaviour:
   PSbulletpower: 1
   MPbulletpower: 1
   ARbulletpower: 3
-  LMGFbulletpower: 5
+  LMGbulletpower: 0
   MGbulletpower: 3
   hp: 100
   blendshapeRenderer: {fileID: 1029721565486588516}
