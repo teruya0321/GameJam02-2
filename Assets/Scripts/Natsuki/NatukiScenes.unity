@@ -241,6 +241,10 @@ PrefabInstance:
       value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 1293513882, guid: f055e790ef4528b4a94df03175ee2962, type: 3}
+      propertyPath: HitObject
+      value: 
+      objectReference: {fileID: 1433131171983354430, guid: 0118c1cc7d475044e9d6ec7ae5ffa652, type: 3}
+    - target: {fileID: 1293513882, guid: f055e790ef4528b4a94df03175ee2962, type: 3}
       propertyPath: ballspeed
       value: 100000
       objectReference: {fileID: 0}

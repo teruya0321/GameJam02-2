@@ -49,6 +49,8 @@ public class PlayerControl_Nat : MonoBehaviour
     float MNGcount;
     float FinFanelcount;
 
+    public GameObject HitObject;
+
     public int hp = 0;
 
     public SkinnedMeshRenderer blendshapeRenderer;
@@ -280,6 +282,7 @@ public class PlayerControl_Nat : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Enemy"))
                 {
+                    Instantiate(HitObject, hit.transform.position, Quaternion.identity);
                     hit.transform.GetComponent<EnemyModel_nos>().damage(PSbulletpower);
 
                     Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
@@ -313,6 +316,7 @@ public class PlayerControl_Nat : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Enemy"))
                 {
+                    Instantiate(HitObject, hit.point, Quaternion.identity);
                     hit.transform.GetComponent<EnemyModel_nos>().damage(MPbulletpower);
 
                     Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
@@ -346,6 +350,7 @@ public class PlayerControl_Nat : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Enemy"))
                 {
+                    Instantiate(HitObject, hit.point, Quaternion.identity);
                     hit.transform.GetComponent<EnemyModel_nos>().damage(MGbulletpower);
 
                     Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
@@ -379,6 +384,7 @@ public class PlayerControl_Nat : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Enemy"))
                 {
+                    Instantiate(HitObject, hit.point, Quaternion.identity);
                     hit.transform.GetComponent<EnemyModel_nos>().damage(ARbulletpower);
 
                     Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
@@ -413,6 +419,7 @@ public class PlayerControl_Nat : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Enemy"))
                 {
+                    Instantiate(HitObject, hit.point, Quaternion.identity);
                     hit.transform.GetComponent<EnemyModel_nos>().damage(LMGbulletpower);
 
                     Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
@@ -446,6 +453,7 @@ public class PlayerControl_Nat : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Enemy"))
                 {
+                    Instantiate(HitObject, hit.point, Quaternion.identity);
                     hit.transform.GetComponent<EnemyModel_nos>().damage(MNGbulletpower);
 
                     Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
@@ -479,6 +487,7 @@ public class PlayerControl_Nat : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Enemy"))
                 {
+                    Instantiate(HitObject, hit.point, Quaternion.identity);
                     hit.transform.GetComponent<EnemyModel_nos>().damage(FinFanelpower);
 
                     Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
