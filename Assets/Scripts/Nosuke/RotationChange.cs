@@ -10,10 +10,4 @@ public class RotationChange : MonoBehaviour
     {
         gameObject.transform.localEulerAngles = changeRotation;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

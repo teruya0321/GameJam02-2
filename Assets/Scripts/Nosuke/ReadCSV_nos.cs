@@ -116,6 +116,7 @@ public class ReadCSV_nos : MonoBehaviour
         }
 
         EnemyMove_nos ene_move = enemy.AddComponent<EnemyMove_nos>();
+        enemy.AddComponent<DestroyObject_nos>();
 
         ene_move.distance = 10;
         ene_move.enemGravity = 10;

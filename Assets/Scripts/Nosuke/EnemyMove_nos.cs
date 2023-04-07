@@ -75,7 +75,7 @@ public class EnemyMove_nos : MonoBehaviour
             
         }
 
-        if(raytimer >= 5)
+        if(raytimer <= 2)
         {
             isLookPlayer = true;
         }
