@@ -27,6 +27,8 @@ public class EnemyMove_nos : MonoBehaviour
 
     EnemyModel_nos model;
 
+    float raytimer;
+
     void Start()
     {
         Application.targetFrameRate = 60;
@@ -58,17 +60,28 @@ public class EnemyMove_nos : MonoBehaviour
             //Debug.Log("当たったよ");
             if (raycastHit.collider.gameObject.tag == "Player")
             {
-                isLookPlayer = true;
+                //isLookPlayer = true;
                 // 当たっている間は追いかける設定をtrueに
+                raytimer = 0;
                 Debug.Log("当たったよ");
             }
             else
             {
-                isLookPlayer = false;
+                //isLookPlayer = false;
                 // 当たっていなければfalseにする
+                raytimer += Time.deltaTime;
                 //Debug.Log("当たってないよ");
             }
             
+        }
+
+        if(raytimer >= 5)
+        {
+            isLookPlayer = true;
+        }
+        else
+        {
+            isLookPlayer = false;
         }
         enemTimer += Time.deltaTime;
         // 敵のランダム行動用のタイマー
