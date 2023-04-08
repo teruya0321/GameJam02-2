@@ -172,7 +172,7 @@ MonoBehaviour:
   enemyID: 0
   enemyName: 
   enemyAtk: 0
-  enemyHp: 1000
+  enemyHp: 10
   speed: 0
   drops: 0
   dropItems: 0

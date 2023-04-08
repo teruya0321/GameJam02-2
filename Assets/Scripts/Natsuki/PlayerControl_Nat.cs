@@ -332,7 +332,7 @@ public class PlayerControl_Nat : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Enemy"))
                 {
-                    Instantiate(HitObject, hit.transform.position, Quaternion.identity);
+                    Instantiate(HitObject, hit.point, Quaternion.identity);
                     hit.transform.GetComponent<EnemyModel_nos>().damage(PSbulletpower);
 
                     Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 1);
