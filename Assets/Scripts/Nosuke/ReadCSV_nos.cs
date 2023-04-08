@@ -23,7 +23,7 @@ public class ReadCSV_nos : MonoBehaviour
     public bool boss;
     private void Awake()
     {
-        csvFile = Resources.Load("CSVs/EnemyDate") as TextAsset; // Resoucesâ∫ÇÃCSVì«Ç›çûÇ›
+        csvFile = Resources.Load("CSVs/EnemyDate3") as TextAsset; // Resoucesâ∫ÇÃCSVì«Ç›çûÇ›
         pos = gameObject.transform.position;
     }
 
@@ -56,11 +56,11 @@ public class ReadCSV_nos : MonoBehaviour
 
         if (boss)
         {
-            i = Random.Range(7, 9);
+            i = Random.Range(11, 13);
         }
         else
         {
-            i = Random.Range(1, 7);
+            i = Random.Range(1, 11);
         }
 
         enemyID = int.Parse(csvDatas[i][0]);

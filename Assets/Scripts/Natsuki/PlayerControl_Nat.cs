@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerControl_Nat : MonoBehaviour
 {
@@ -61,6 +63,21 @@ public class PlayerControl_Nat : MonoBehaviour
     float hpTimer;
 
     bool onCursor = true;
+
+    public Text sizeText;
+
+    public Image PSIcon;
+    public Image MPIcon;
+    public Image MGIcon;
+    public Image ARIcon;
+    public Image LMGIcon;
+    public Image MNGIcon;
+    public Image FinFanelIcon;
+
+    public Image FatIcon;
+    public Image NormalIcon;
+    public Image SkinnyIcon;
+
     void Start()
     {
         PScount = 0;
@@ -70,6 +87,14 @@ public class PlayerControl_Nat : MonoBehaviour
         LMGcount = 0;
         MNGcount = 0;
         FinFanelcount = 0;
+
+        PSIcon.enabled = false;
+        MPIcon.enabled = false;
+        MGIcon.enabled = false;
+        ARIcon.enabled = false;
+        LMGIcon.enabled = false;
+        MNGIcon.enabled = false;
+        FinFanelIcon.enabled = false;
 
         count = 0;
 
@@ -103,6 +128,9 @@ public class PlayerControl_Nat : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
 
+        float size = hp + 100 * 0.7f;
+        sizeText.text = size.ToString("N0");
+
         hpTimer += Time.deltaTime;
 
         if(hpTimer >= hpLowerTime)
@@ -113,7 +141,29 @@ public class PlayerControl_Nat : MonoBehaviour
 
         if(hp > 100)
         {
-            hp = 100;
+            SceneManager.LoadScene("FatEnd");
+        }
+        if(hp <= 100 && hp > 25)
+        {
+            FatIcon.enabled = true;
+            NormalIcon.enabled = false;
+            SkinnyIcon.enabled = false;
+        }
+        if(hp <= 25 && hp >= -25)
+        {
+            FatIcon.enabled = false;
+            NormalIcon.enabled = true;
+            SkinnyIcon.enabled = false;
+        }
+        if(hp < -25 && hp >= -100)
+        {
+            FatIcon.enabled = false;
+            NormalIcon.enabled = false;
+            SkinnyIcon.enabled = true;
+        }
+        if(hp < -100)
+        {
+            SceneManager.LoadScene("SkinnyEnd");
         }
         if(hp > 0)
         {
@@ -525,6 +575,13 @@ public class PlayerControl_Nat : MonoBehaviour
             other.gameObject.transform.SetParent(parentTran);
             other.transform.localEulerAngles = Vector3.zero;
             childrenScript = other.gameObject.GetComponent<ChildrenScript>();
+            PSIcon.enabled = true;
+            MPIcon.enabled = false;
+            MGIcon.enabled = false;
+            ARIcon.enabled = false;
+            LMGIcon.enabled = false;
+            MNGIcon.enabled = false;
+            FinFanelIcon.enabled = false;
         }
        
         if (other.gameObject.name == "MachinePistol")
@@ -539,6 +596,13 @@ public class PlayerControl_Nat : MonoBehaviour
             other.gameObject.transform.SetParent(parentTran);
             other.transform.localEulerAngles = Vector3.zero;
             childrenScript = other.gameObject.GetComponent<ChildrenScript>();
+            MPIcon.enabled = true;
+            PSIcon.enabled = false;
+            MGIcon.enabled = false;
+            ARIcon.enabled = false;
+            LMGIcon.enabled = false;
+            MNGIcon.enabled = false;
+            FinFanelIcon.enabled = false;
         }
         
         if (other.gameObject.name == "100mmMachingun02")
@@ -553,6 +617,13 @@ public class PlayerControl_Nat : MonoBehaviour
             other.gameObject.transform.SetParent(parentTran);
             other.transform.localEulerAngles = Vector3.zero;
             childrenScript = other.gameObject.GetComponent<ChildrenScript>();
+            MGIcon.enabled = true;
+            PSIcon.enabled = false;
+            MPIcon.enabled = false;
+            ARIcon.enabled = false;
+            LMGIcon.enabled = false;
+            MNGIcon.enabled = false;
+            FinFanelIcon.enabled = false;
         }
 
         if (other.gameObject.name == "AssaultRifle")
@@ -567,6 +638,13 @@ public class PlayerControl_Nat : MonoBehaviour
             other.gameObject.transform.SetParent(parentTran);
             other.transform.localEulerAngles = Vector3.zero;
             childrenScript = other.gameObject.GetComponent<ChildrenScript>();
+            ARIcon.enabled = true;
+            PSIcon.enabled = false;
+            MPIcon.enabled = false;
+            MGIcon.enabled = false;
+            LMGIcon.enabled = false;
+            MNGIcon.enabled = false;
+            FinFanelIcon.enabled = false;
         }
 
         if (other.gameObject.name == "LMG")
@@ -581,6 +659,13 @@ public class PlayerControl_Nat : MonoBehaviour
             other.gameObject.transform.SetParent(parentTran);
             other.transform.localEulerAngles = Vector3.zero;
             childrenScript = other.gameObject.GetComponent<ChildrenScript>();
+            LMGIcon.enabled = true;
+            PSIcon.enabled = false;
+            MPIcon.enabled = false;
+            MGIcon.enabled = false;
+            ARIcon.enabled = false;
+            MNGIcon.enabled = false;
+            FinFanelIcon.enabled = false;
         }
 
         if (other.gameObject.name == "MiniGun")
@@ -595,6 +680,13 @@ public class PlayerControl_Nat : MonoBehaviour
             other.gameObject.transform.SetParent(parentTran);
             other.transform.localEulerAngles = Vector3.zero;
             childrenScript = other.gameObject.GetComponent<ChildrenScript>();
+            MNGIcon.enabled = true;
+            PSIcon.enabled = false;
+            MPIcon.enabled = false;
+            MGIcon.enabled = false;
+            ARIcon.enabled = false;
+            LMGIcon.enabled = false;
+            FinFanelIcon.enabled = false;
         }
 
         if (other.gameObject.name == "FinFanel03")
@@ -609,6 +701,13 @@ public class PlayerControl_Nat : MonoBehaviour
             other.gameObject.transform.SetParent(parentTran);
             other.transform.localEulerAngles = Vector3.zero;
             childrenScript = other.gameObject.GetComponent<ChildrenScript>();
+            FinFanelIcon.enabled = true;
+            PSIcon.enabled = false;
+            MPIcon.enabled = false;
+            MGIcon.enabled = false;
+            ARIcon.enabled = false;
+            LMGIcon.enabled = false;
+            MNGIcon.enabled = false;    
         }
     }
 }

@@ -29,6 +29,8 @@ public class EnemyMove_nos : MonoBehaviour
 
     float raytimer;
 
+    float timer;
+
     void Start()
     {
         Application.targetFrameRate = 60;
@@ -57,9 +59,24 @@ public class EnemyMove_nos : MonoBehaviour
         Debug.DrawRay(transform.position, transform.forward.normalized * distance, Color.red);
         if (Physics.Raycast(rayPosition, out raycastHit, distance))
         {
+            float posdistance = Vector3.Distance(transform.position,raycastHit.transform.position);
+            
             //Debug.Log("“–‚½‚Á‚½‚æ");
             if (raycastHit.collider.gameObject.tag == "Player")
             {
+                if(posdistance <= 2 && model.skinny == true)
+                {
+                    timer += Time.deltaTime;
+                    if(timer >= 1)
+                    {
+                        raycastHit.collider.gameObject.GetComponent<PlayerControl_Nat>().hp += model.enemyAtk;
+                        timer = 0;
+                    }
+                }
+                else
+                {
+                    timer = 0;
+                }
                 //isLookPlayer = true;
                 // “–‚½‚Á‚Ä‚¢‚éŠÔ‚Í’Ç‚¢‚©‚¯‚éİ’è‚ğtrue‚É
                 raytimer = 0;
@@ -105,7 +122,7 @@ public class EnemyMove_nos : MonoBehaviour
         {
             FoundPlayer();
             // “G‚ª‰“‹——£UŒ‚‚Å‚«‚éƒLƒƒƒ‰‚È‚ç
-            if (model.skinny)
+            if (model.skinny == false)
             {
                 model.LongAttack();
             }

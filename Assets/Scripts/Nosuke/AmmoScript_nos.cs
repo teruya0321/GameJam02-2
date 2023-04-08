@@ -14,6 +14,11 @@ public class AmmoScript_nos : MonoBehaviour
         {
             Destroy();
         }
+        if(collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<PlayerControl_Nat>().hp += atk;
+            Destroy();
+        }
     }
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {

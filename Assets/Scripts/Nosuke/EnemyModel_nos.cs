@@ -42,13 +42,7 @@ public class EnemyModel_nos : MonoBehaviour
         // “G‚ÌHP‚ğŒ¸‚ç‚·ˆ—
         enemyHp--;
     }
-    private void OnCollisionStay(Collision collision)
-    {
-        if(collision.gameObject.tag == "Player" && !skinny)
-        {
-            collision.gameObject.GetComponent<PlayerControl_Nat>().hp -= enemyAtk;
-        }
-    }
+    
     public void LongAttack()
     {
         timer += Time.deltaTime;
