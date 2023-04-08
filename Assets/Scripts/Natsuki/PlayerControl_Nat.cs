@@ -164,6 +164,12 @@ public class PlayerControl_Nat : MonoBehaviour
         if(hp < -100)
         {
             SceneManager.LoadScene("SkinnyEnd");
+            Debug.LogWarning("You Dead");
+            anim.SetBool("Idel", false);
+            anim.SetBool("Run", false);
+            anim.SetBool("Jump", false);
+            anim.SetBool("backStep", false);
+            anim.SetBool("Dead", true);
         }
         if(hp > 0)
         {
@@ -174,15 +180,6 @@ public class PlayerControl_Nat : MonoBehaviour
         {
             blendshapeRenderer.SetBlendShapeWeight(1, hp * -1);
             blendshapeRenderer.SetBlendShapeWeight(0, 0);
-        }
-        if(hp < -100)
-        {
-            Debug.LogWarning("You Dead");
-            anim.SetBool("Idel", false);
-            anim.SetBool("Run", false);
-            anim.SetBool("Jump", false);
-            anim.SetBool("backStep", false);
-            anim.SetBool("Dead", true);
         }
 
         PScount += Time.deltaTime;
