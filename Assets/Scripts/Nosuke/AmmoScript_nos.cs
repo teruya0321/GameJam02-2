@@ -16,7 +16,7 @@ public class AmmoScript_nos : MonoBehaviour
         }
         if(collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<PlayerControl_Nat>().hp += atk;
+            collision.gameObject.GetComponent<PlayerControl_Nat>().hp += atk * 2;
             Destroy();
         }
     }
@@ -24,7 +24,7 @@ public class AmmoScript_nos : MonoBehaviour
     {
         if(hit.gameObject.tag == "Player")
         {
-            hit.gameObject.GetComponent<PlayerControl_Nat>().hp += atk;
+            hit.gameObject.GetComponent<PlayerControl_Nat>().hp += atk * 2;
             Destroy();
         }
     }

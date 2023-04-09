@@ -2,9 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LoadScene_nos : MonoBehaviour
 {
+    public Text weight;
+    public void Start()
+    {
+        Cursor.visible = true;
+
+        Cursor.lockState = CursorLockMode.None;
+        if(weight != null)
+        {
+            weight.text = PlayerControl_Nat.size + "kg";
+        }
+    }
     public void MainScene()
     {
         SceneManager.LoadScene("Map");

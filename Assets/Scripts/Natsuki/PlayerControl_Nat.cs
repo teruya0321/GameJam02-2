@@ -64,6 +64,7 @@ public class PlayerControl_Nat : MonoBehaviour
 
     bool onCursor = true;
 
+    public static float size;
     public Text sizeText;
 
     public Image PSIcon;
@@ -78,6 +79,16 @@ public class PlayerControl_Nat : MonoBehaviour
     public Image NormalIcon;
     public Image SkinnyIcon;
 
+    public AudioSource BGM;
+    public AudioSource walk;
+    public AudioSource psSE;
+    public AudioSource mpSE;
+    public AudioSource mgSE;
+    public AudioSource arSE;
+    public AudioSource lmgSE;
+    public AudioSource mngSE;
+    public AudioSource fanelSE;
+    public AudioSource gunLostSE;
     void Start()
     {
         PScount = 0;
@@ -128,7 +139,7 @@ public class PlayerControl_Nat : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
 
-        float size = hp + 100 * 0.7f;
+        size = hp + 100 * 0.7f;
         sizeText.text = size.ToString("N0");
 
         hpTimer += Time.deltaTime;
@@ -201,15 +212,25 @@ public class PlayerControl_Nat : MonoBehaviour
         {
             movedir.z = Input.GetAxisRaw("Vertical") * speed;
 
+            if(movedir.x != 0 || movedir.z != 0)
+            {
+                walk.Play();
+            }
+            else
+            {
+                walk.Pause();
+            }
             if(movedir.z == 10 || movedir.z == -10)
             {
                 anim.SetBool("Idel", false);
                 anim.SetBool("Run", true);
+                
             }
             else if(movedir.z == 0)
             {
                 anim.SetBool("Idel", true);
                 anim.SetBool("Run", false);
+                
             }
 
             movedir.x = Input.GetAxisRaw("Horizontal") * speed;
@@ -218,6 +239,7 @@ public class PlayerControl_Nat : MonoBehaviour
             {
                 anim.SetBool("Idel", false);
                 anim.SetBool("Run", true);
+                
             }
 
             if (Input.GetMouseButtonDown(1))//右クリックでジャンプ
@@ -325,6 +347,7 @@ public class PlayerControl_Nat : MonoBehaviour
         {
             Ray ray = new Ray(Barrel[0].transform.position, Player.transform.forward);
             RaycastHit hit;
+            psSE.Play();
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.collider.CompareTag("Enemy"))
@@ -359,6 +382,7 @@ public class PlayerControl_Nat : MonoBehaviour
         {
             Ray ray = new Ray(Barrel[1].transform.position, Player.transform.forward);
             RaycastHit hit;
+            mpSE.Play();
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.collider.CompareTag("Enemy"))
@@ -393,6 +417,7 @@ public class PlayerControl_Nat : MonoBehaviour
         {
             Ray ray = new Ray(Barrel[2].transform.position, Player.transform.forward);
             RaycastHit hit;
+            mgSE.Play();
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.collider.CompareTag("Enemy"))
@@ -427,6 +452,7 @@ public class PlayerControl_Nat : MonoBehaviour
         {
             Ray ray = new Ray(Barrel[3].transform.position, Player.transform.forward);
             RaycastHit hit;
+            arSE.Play();
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.collider.CompareTag("Enemy"))
@@ -462,6 +488,7 @@ public class PlayerControl_Nat : MonoBehaviour
         {
             Ray ray = new Ray(Barrel[4].transform.position, Player.transform.forward);
             RaycastHit hit;
+            lmgSE.Play();
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.collider.CompareTag("Enemy"))
@@ -496,6 +523,7 @@ public class PlayerControl_Nat : MonoBehaviour
         {
             Ray ray = new Ray(Barrel[5].transform.position, Player.transform.forward);
             RaycastHit hit;
+            mngSE.Play();
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.collider.CompareTag("Enemy"))
@@ -530,6 +558,7 @@ public class PlayerControl_Nat : MonoBehaviour
         {
             Ray ray = new Ray(finFanelbarrel[Random.Range(0, 6)].transform.position, Player.transform.forward);
             RaycastHit hit;
+            fanelSE.Play();
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.collider.CompareTag("Enemy"))
@@ -572,6 +601,9 @@ public class PlayerControl_Nat : MonoBehaviour
             other.gameObject.transform.SetParent(parentTran);
             other.transform.localEulerAngles = Vector3.zero;
             childrenScript = other.gameObject.GetComponent<ChildrenScript>();
+
+            gunLostSE.Play();
+
             PSIcon.enabled = true;
             MPIcon.enabled = false;
             MGIcon.enabled = false;
@@ -593,6 +625,9 @@ public class PlayerControl_Nat : MonoBehaviour
             other.gameObject.transform.SetParent(parentTran);
             other.transform.localEulerAngles = Vector3.zero;
             childrenScript = other.gameObject.GetComponent<ChildrenScript>();
+
+            gunLostSE.Play();
+
             MPIcon.enabled = true;
             PSIcon.enabled = false;
             MGIcon.enabled = false;
@@ -614,6 +649,9 @@ public class PlayerControl_Nat : MonoBehaviour
             other.gameObject.transform.SetParent(parentTran);
             other.transform.localEulerAngles = Vector3.zero;
             childrenScript = other.gameObject.GetComponent<ChildrenScript>();
+
+            gunLostSE.Play();
+
             MGIcon.enabled = true;
             PSIcon.enabled = false;
             MPIcon.enabled = false;
@@ -635,6 +673,9 @@ public class PlayerControl_Nat : MonoBehaviour
             other.gameObject.transform.SetParent(parentTran);
             other.transform.localEulerAngles = Vector3.zero;
             childrenScript = other.gameObject.GetComponent<ChildrenScript>();
+
+            gunLostSE.Play();
+
             ARIcon.enabled = true;
             PSIcon.enabled = false;
             MPIcon.enabled = false;
@@ -656,6 +697,9 @@ public class PlayerControl_Nat : MonoBehaviour
             other.gameObject.transform.SetParent(parentTran);
             other.transform.localEulerAngles = Vector3.zero;
             childrenScript = other.gameObject.GetComponent<ChildrenScript>();
+
+            gunLostSE.Play();
+
             LMGIcon.enabled = true;
             PSIcon.enabled = false;
             MPIcon.enabled = false;
@@ -677,6 +721,9 @@ public class PlayerControl_Nat : MonoBehaviour
             other.gameObject.transform.SetParent(parentTran);
             other.transform.localEulerAngles = Vector3.zero;
             childrenScript = other.gameObject.GetComponent<ChildrenScript>();
+
+            gunLostSE.Play();
+
             MNGIcon.enabled = true;
             PSIcon.enabled = false;
             MPIcon.enabled = false;
@@ -698,6 +745,9 @@ public class PlayerControl_Nat : MonoBehaviour
             other.gameObject.transform.SetParent(parentTran);
             other.transform.localEulerAngles = Vector3.zero;
             childrenScript = other.gameObject.GetComponent<ChildrenScript>();
+
+            gunLostSE.Play();
+
             FinFanelIcon.enabled = true;
             PSIcon.enabled = false;
             MPIcon.enabled = false;
