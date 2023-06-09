@@ -28,8 +28,10 @@ public class EnemyMove_nos : MonoBehaviour
     EnemyModel_nos model;
 
     float raytimer;
+    // Rayが当たっているか図るための変数
 
     float timer;
+
 
     void Start()
     {
@@ -60,7 +62,7 @@ public class EnemyMove_nos : MonoBehaviour
         if (Physics.Raycast(rayPosition, out raycastHit, distance))
         {
             float posdistance = Vector3.Distance(transform.position,raycastHit.transform.position);
-            
+            // 近接攻撃の判定用
             //Debug.Log("当たったよ");
             if (raycastHit.collider.gameObject.tag == "Player")
             {
@@ -71,21 +73,20 @@ public class EnemyMove_nos : MonoBehaviour
                     {
                         raycastHit.collider.gameObject.GetComponent<PlayerControl_Nat>().hp += model.enemyAtk;
                         timer = 0;
+                        // 敵の距離が近くなると、一秒ごとにプレイヤーの体重を減らしてくる
                     }
                 }
                 else
                 {
                     timer = 0;
+                    // 保険用 タイマーを誤作動させないため
                 }
-                //isLookPlayer = true;
-                // 当たっている間は追いかける設定をtrueに
                 raytimer = 0;
+                // raytimerの説明は96行目から記入してます
                 Debug.Log("当たったよ");
             }
             else
             {
-                //isLookPlayer = false;
-                // 当たっていなければfalseにする
                 raytimer += Time.deltaTime;
                 //Debug.Log("当たってないよ");
             }
@@ -100,6 +101,9 @@ public class EnemyMove_nos : MonoBehaviour
         {
             isLookPlayer = false;
         }
+        // Rayが外れてもしばらくは追いかけ続けるような設定にするためにタイマーを採用
+
+
         enemTimer += Time.deltaTime;
         // 敵のランダム行動用のタイマー
         if (enemTimer > enemTimerRimit + enemTimerRandom && !isLookPlayer)
@@ -129,7 +133,7 @@ public class EnemyMove_nos : MonoBehaviour
         }
     }
 
-    void FoundPlayer()
+    void FoundPlayer() // プレイヤーを見つけた際の行動
     {
         // 対象物と自分自身の座標からベクトルを算出
         Vector3 vector3 = player.transform.position - this.transform.position;
@@ -145,9 +149,7 @@ public class EnemyMove_nos : MonoBehaviour
     }
 
     
-
-    // 敵のランダム行動を決める関数
-    void enemActions()
+    void enemActions() // 敵のランダム行動を決める関数
     {
         //string actWord;
         // 行動をランダムに決める

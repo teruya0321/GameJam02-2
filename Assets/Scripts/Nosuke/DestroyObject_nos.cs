@@ -4,20 +4,14 @@ using UnityEngine;
 
 public class DestroyObject_nos : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    // Start is called before the first frame updatepdate is called once per frame
     void Update()
     {
-
         Vector3 pos = transform.position;
-        if(pos.x <= -50)
+        if(pos.y <= -50)
         {
             Destroy(gameObject);
+            //敵が地面をすり抜けてしまった時用に、一定の座標を下回ったら消すように
         }
     }
 }
